@@ -1,4 +1,4 @@
-# Dino World — v0.0.2 family-testing prototype
+# Dino World — v0.0.4 family-testing prototype
 
 A small, toddler-oriented dinosaur playground PWA prototype. This release uses locally rendered, 3D-inspired cartoon artwork drawn with Canvas so the scene works without external image/model downloads. It is not yet a full 3D engine build.
 
@@ -14,9 +14,9 @@ A small, toddler-oriented dinosaur playground PWA prototype. This release uses l
 - Responsive iPhone-first layout
 - PWA manifest, app icon, service worker and offline shell cache
 - Automatic update check on open and every 60 seconds
-- Visible version label (v0.0.2)
+- Visible version label (v0.0.4)
 
-## Version 0.0.2 changes
+## Version 0.0.4 changes
 - Replaced Trixie with Stan the Stegosaurus, including back plates and a spiked tail in the canvas illustration.
 - Replaced Benny with Jarvis the Brachiosaurus.
 - Updated character cards, selection, greetings, facts, quiz choices and egg-hatching character pool.
@@ -44,7 +44,7 @@ The update system checks `version.json` when the app opens and every 60 seconds.
 For each future release, make all of these changes together:
 1. Change `APP_VERSION` in `app.js`.
 2. Change `version` and `released` in `version.json`.
-3. Change `CACHE_VERSION` in `sw.js` (for example `dino-world-v0.0.2`).
+3. Change `CACHE_VERSION` in `sw.js` (for example `dino-world-v0.0.4`).
 4. Update the visible version label automatically follows `APP_VERSION`; check it on the home screen.
 5. Publish all changed files together. Give GitHub Pages a few minutes to deploy before testing.
 
@@ -56,3 +56,5 @@ For an already-installed PWA, the browser may need a short moment to detect a de
 - The quiz is a basic prototype and needs more usability testing with adults before toddler testing.
 - No accounts, analytics, ads, purchases or cloud storage.
 - This is an early prototype; supervise children during use and check content, accessibility and performance before wider distribution.
+
+\n## v0.0.4 custom art pack\n\nThis release bundles all four generated concept-board images plus cropped local artwork for the main dinosaur scene, character cards, environment, expressions/actions, eggs/food, icons, and reward graphics. The current app uses the generated character artwork in the main scene and character picker. The full boards are retained in `assets/` as a source art library for future individual sprite extraction.\n

@@ -20,15 +20,16 @@
 
     <section class="scene-card" aria-label="Dinosaur playground">
       <div class="scene-label"><span class="sun-dot"></span><span id="sceneLabel">Sunny Dino Meadow</span></div>
-      <canvas id="worldCanvas" aria-label="A colourful dinosaur meadow with three friendly dinosaurs"></canvas>
+      <img class="scene-artwork" src="./assets/hero-dinosaurs.jpg" alt="Rex the T. rex, Stan the Triceratops and Jarvis the Brachiosaurus in Dino World">
+      <canvas id="worldCanvas" aria-label="Interactive dinosaur meadow"></canvas>
       <div class="speech-bubble" id="speechBubble" role="status" aria-live="polite">Tap a dinosaur to say hello!</div>
       <div class="scene-bottom"><span>☁️ <span id="weatherText">A lovely day to explore</span></span><span class="tiny-stars">✦ ✦ ✦</span></div>
     </section>
 
     <section class="dino-picker" aria-label="Choose a dinosaur">
-      <button class="dino-choice selected" data-dino="rex"><span class="dino-emoji">🦖</span><span>Rex</span><small>T. rex</small></button>
-      <button class="dino-choice" data-dino="stan"><span class="dino-emoji">🦕</span><span>Stan</span><small>Stegosaurus</small></button>
-      <button class="dino-choice" data-dino="jarvis"><span class="dino-emoji">🦕</span><span>Jarvis</span><small>Brachiosaurus</small></button>
+      <button class="dino-choice selected" data-dino="rex"><img class="dino-portrait rex-portrait" src="./assets/rex-portrait.jpg" alt=""><span>Rex</span><small>T. rex</small></button>
+      <button class="dino-choice" data-dino="stan"><img class="dino-portrait stan-portrait" src="./assets/stan-portrait.jpg" alt=""><span>Stan</span><small>Stegosaurus</small></button>
+      <button class="dino-choice" data-dino="jarvis"><img class="dino-portrait jarvis-portrait" src="./assets/jarvis-portrait.jpg" alt=""><span>Jarvis</span><small>Brachiosaurus</small></button>
     </section>
 
     <section class="activity-section">
@@ -41,7 +42,7 @@
       </div>
     </section>
 
-    <footer class="footer"><span>Made for little dino fans 💚</span><button id="parentButton" class="parent-link">Grown-ups</button><span class="version" id="versionLabel">v0.0.2</span></footer>
+    <footer class="footer"><span>Made for little dino fans 💚</span><button id="parentButton" class="parent-link">Grown-ups</button><span class="version" id="versionLabel">v0.0.4</span></footer>
   </main>
 
   <div class="modal-backdrop hidden" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">

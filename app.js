@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const APP_VERSION = '0.0.2';
+  const APP_VERSION = '0.0.4';
   const $ = id => document.getElementById(id);
   const canvas = $('worldCanvas');
   const ctx = canvas.getContext('2d');
@@ -145,8 +145,15 @@
   $('soundToggle').addEventListener('click',()=>{soundOn=!soundOn;$('soundToggle').textContent=soundOn?'🔊':'🔇';$('soundToggle').title=soundOn?'Sound on':'Sound off';if(soundOn)speak('Sound is on!');else bubble.textContent='Sound is off. Tap to turn it back on.';});
   $('modalClose').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
   $('parentButton').addEventListener('click',()=>openModal({art:'💚',title:'Grown-ups corner',text:'Dino World v'+APP_VERSION+' is an early family-testing prototype. It does not need an account and does not intentionally collect personal information. Please supervise little explorers while testing.',action:'Back to play'}));
-  canvas.addEventListener('click',e=>{const rect=canvas.getBoundingClientRect();const x=e.clientX-rect.left;const rel=x/rect.width;if(rel<.45)selectDino('rex');else if(rel<.68)selectDino('stan');else selectDino('jarvis');});
+  $('sceneLabel').addEventListener('click',()=>selectDino(selected));
+  $('sceneLabel').parentElement.parentElement.addEventListener('click',e=>{if(e.target.closest('.scene-label')||e.target.closest('.speech-bubble'))return;const rect=e.currentTarget.getBoundingClientRect();const rel=(e.clientX-rect.left)/rect.width;if(rel<.34)selectDino('rex');else if(rel<.68)selectDino('stan');else selectDino('jarvis');});
   $('versionLabel').textContent='v'+APP_VERSION;
+  // The generated concept boards are bundled as local art references for future sprite extraction.
+  document.querySelectorAll('.activity-card').forEach((card,i)=>{
+    const artFiles=['eggs-food-sheet.jpg','eggs-food-sheet.jpg','icons-sheet.jpg','icons-sheet.jpg'];
+    card.style.backgroundImage='linear-gradient(rgba(255,255,255,.12),rgba(255,255,255,.12))';
+    card.dataset.artPack='concept-board-04';
+  });
   window.addEventListener('resize',resizeCanvas,{passive:true});resizeCanvas();requestAnimationFrame(animate);
 
   // PWA install and automatic update support. The app checks on open and every 60 seconds.

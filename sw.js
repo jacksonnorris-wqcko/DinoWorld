@@ -1,9 +1,9 @@
 /* Dino World auto-update service worker.
    For each release, update CACHE_VERSION in this file AND version.json.
    Keep app assets local so the shell remains available offline. */
-const CACHE_VERSION = 'dino-world-v0.0.2';
+const CACHE_VERSION = 'dino-world-v0.0.4';
 const APP_PREFIX = 'dino-world-';
-const APP_SHELL = ['./', './index.html', './styles.css', './app.js', './manifest.json', './version.json', './icon.svg'];
+const APP_SHELL = ['./', './index.html', './styles.css', './app.js', './manifest.json', './version.json', './icon.svg', './assets/hero-dinosaurs.jpg', './assets/rex-portrait.jpg', './assets/stan-portrait.jpg', './assets/jarvis-portrait.jpg', './assets/meadow-background.jpg', './assets/expression-sheet.jpg', './assets/action-sheet.jpg', './assets/eggs-food-sheet.jpg', './assets/icons-sheet.jpg', './assets/rewards-sheet.jpg', './assets/concept-board-01.png', './assets/concept-board-02.png', './assets/concept-board-03.png', './assets/concept-board-04.png'];
 
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
