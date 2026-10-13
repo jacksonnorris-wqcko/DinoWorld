@@ -1,20 +1,19 @@
-Dino World v0.0.13 — changed files only
+Dino World v0.0.14 — changed files only
 
-This release addresses the mismatch between the intended reference layout and v0.0.12.
+This update specifically fixes the Let's Play activity cards on narrow iPhone screens.
 
-Upload these SIX files to the ROOT of the existing GitHub repository, replacing the same-named files:
+Upload these five files to the ROOT of your existing GitHub repository, replacing the matching files:
 - index.html
 - styles.css
 - app.js
-- artwork.js
 - sw.js
 - version.json
 
-Extract the ZIP first. Do not upload the ZIP itself into the repository.
-Wait for GitHub Pages to deploy. Close/reopen Dino World and check the footer says v0.0.13.
+Do not upload the ZIP itself. Extract it first. Keep all files at repository root.
+Wait for GitHub Pages to deploy. Close/reopen the app and confirm the footer says v0.0.14.
 
 What changed:
-- Uses a single wide composite hero illustration, instead of layering three large separate characters over a scenic background.
-- Uses balanced screen rows so the hero doesn't dominate the entire page.
-- Restores a two-by-two activity-card layout with icons, titles, descriptions and chevrons sized within each card.
-- Restores the footer and colorful wordmark styling.
+- Activity icons are constrained to a square box with object-fit: contain.
+- Text receives the remaining grid width without the arrow consuming space on iPhones.
+- Arrows remain on wider screens.
+- Versioned CSS/JS URLs help prevent Safari from showing stale styles.
