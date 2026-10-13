@@ -1,10 +1,10 @@
 {
-  "version": "0.0.11",
-  "release": "Full-screen layout overhaul: large interactive meadow, compact 20% dinosaur selector and bottom four-button activity dock",
-  "released": "2026-10-13",
+  "version": "0.0.12",
+  "release": "iPhone layout sizing fix: reduce scene character overlap and constrain activity icons within hotbar tiles",
+  "released": "2026-10-14",
   "assets": [
-    "scenic meadow background",
-    "transparent Rex, Stan and Jarvis character art",
+    "existing meadow artwork",
+    "existing Rex, Stan and Jarvis cutouts",
     "existing activity icons"
   ]
 }

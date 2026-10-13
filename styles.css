@@ -58,3 +58,41 @@ button{font:inherit;touch-action:manipulation;cursor:pointer}
 @media(max-height:700px){.topbar{height:40px;flex-basis:40px}.brand-mark{width:32px;height:32px;flex-basis:32px}.brand-copy p{display:none}.play-layout{gap:6px}.app-shell{gap:6px}.scene-hud{top:6px;left:6px;right:6px}.scene-label,.speech-bubble{padding:7px 8px}.scene-rex{height:60%}.scene-stan{height:56%}.scene-jarvis{height:77%}.dino-portrait{height:clamp(34px,7dvh,55px)}.activity-dock{padding:6px 7px}.dock-heading{height:17px;flex-basis:17px}.activity-card img{width:clamp(26px,5.5dvh,38px);height:clamp(26px,5.5dvh,38px)}}
 @media(min-width:600px){.app-shell{padding-left:18px;padding-right:18px}.scene-rex{left:7%}.scene-stan{left:34%}.scene-jarvis{right:5%}.dino-portrait{height:76px}.activity-card img{width:48px;height:48px}}
 @media(max-width:360px){.app-shell{padding-left:8px;padding-right:8px}.topbar{gap:6px}.brand-copy h1{font-size:20px}.scene-label{max-width:45%;font-size:9px}.speech-bubble{max-width:53%;font-size:9px}.dino-picker{gap:5px}.dino-choice{border-radius:15px}.dino-choice small{font-size:8px}.activity-grid{gap:4px}.activity-card{border-radius:12px}.activity-card span{font-size:8.5px}}
+
+
+/* v0.0.12: hard sizing rules for iPhone. Keep the scene clean and make every hotbar icon fit its tile. */
+.play-layout{grid-template-rows:minmax(0,6fr) minmax(0,2fr) minmax(0,2fr);gap:8px}
+.scene-visual{overflow:hidden}
+.scene-background{object-fit:cover;object-position:center 68%}
+.scene-dino{max-width:34%;max-height:74%;width:auto;object-fit:contain;object-position:center bottom}
+.scene-rex{height:43%;left:3%;bottom:2%}
+.scene-stan{height:40%;left:34%;bottom:2%}
+.scene-jarvis{height:61%;right:3%;bottom:2%}
+.scene-hud{top:8px;left:8px;right:8px;gap:7px}
+.scene-label{max-width:47%;padding:8px 9px;font-size:clamp(10px,2.6vw,12px)}
+.speech-bubble{max-width:43%;padding:8px 9px;font-size:clamp(10px,2.55vw,12px)}
+.scene-bottom{left:9px;right:9px;bottom:7px;font-size:10px}
+.dino-picker{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.dino-choice{padding:4px 5px 6px;gap:2px}
+.dino-portrait{width:100%;height:clamp(38px,7.6dvh,68px);max-width:105px;object-fit:contain;object-position:center bottom}
+.activity-dock{padding:7px 8px 8px;gap:6px}
+.dock-heading{height:20px;flex:0 0 20px}
+.activity-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.activity-card{width:100%;height:100%;min-width:0;min-height:0;padding:6px 3px;gap:5px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+.activity-card img{display:block;width:clamp(28px,4.4dvh,36px);height:clamp(28px,4.4dvh,36px);max-width:calc(100% - 4px);max-height:36px;min-width:0;min-height:0;flex:0 0 auto;object-fit:contain;object-position:center;padding:2px;border-radius:9px;background:rgba(255,255,255,.48);box-sizing:border-box}
+.activity-card span{display:block;width:100%;max-width:100%;font-size:clamp(8px,2.15vw,10px);line-height:1.05;font-weight:900;text-align:center;white-space:normal;overflow-wrap:anywhere;word-break:normal}
+@media(max-height:700px){
+ .play-layout{gap:5px}
+ .scene-rex{height:40%}.scene-stan{height:37%}.scene-jarvis{height:57%}
+ .dino-portrait{height:clamp(32px,6.5dvh,48px)}
+ .activity-dock{padding:5px 6px;gap:4px}
+ .dock-heading{height:17px;flex-basis:17px}
+ .activity-card img{width:clamp(25px,4dvh,30px);height:clamp(25px,4dvh,30px);max-height:30px}
+ .activity-card span{font-size:8px}
+}
+@media(max-width:360px){
+ .scene-rex{left:1%;height:41%}.scene-stan{left:32%;height:38%}.scene-jarvis{right:1%;height:58%}
+ .activity-grid{gap:4px}.activity-card{padding:4px 2px;gap:4px}
+ .activity-card img{width:28px;height:28px}
+ .activity-card span{font-size:8px}
+}

@@ -1,9 +1,9 @@
 (() => {
   'use strict';
-  const APP_VERSION = '0.0.11';
+  const APP_VERSION = '0.0.12';
   const $ = id => document.getElementById(id);
   // Essential artwork is embedded in artwork.js so the game still works if a host omits the assets folder.
-  function applyArtwork(){ const art=window.DINO_ART||{}; document.querySelectorAll('[data-art]').forEach(el=>{const key=el.getAttribute('data-art'); if(art[key]) el.src=art[key];}); }
+  function applyArtwork(){ const art=window.DINO_ART||{}; document.querySelectorAll('[data-art]').forEach(el=>{const key=el.getAttribute('data-art'); if(art[key]) { el.src=art[key]; el.classList.remove('art-missing'); } else { el.classList.add('art-missing'); } }); }
   applyArtwork();
   // v0.0.11 uses the image-based meadow scene; the legacy canvas has been removed.
   const canvas = null;
