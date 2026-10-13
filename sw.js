@@ -1,5 +1,5 @@
-/* Dino World v0.0.12 updater */
-const CACHE_VERSION = 'dino-world-v0.0.12';
+/* Dino World v0.0.13 updater */
+const CACHE_VERSION = 'dino-world-v0.0.13';
 const APP_PREFIX = 'dino-world-';
 const APP_SHELL = ['./', './index.html', './styles.css', './app.js', './artwork.js', './manifest.json', './version.json', './icon.svg', './apple-touch-icon.png'];
 self.addEventListener('install', event => { event.waitUntil((async()=>{ const cache=await caches.open(CACHE_VERSION); await cache.addAll(APP_SHELL); await self.skipWaiting(); })()); });

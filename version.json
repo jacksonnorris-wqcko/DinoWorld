@@ -1,10 +1,10 @@
 {
-  "version": "0.0.12",
-  "release": "iPhone layout sizing fix: reduce scene character overlap and constrain activity icons within hotbar tiles",
+  "version": "0.0.13",
+  "release": "Reference-inspired UI rebuild: balanced hero, compact dinosaur selector, two-by-two illustrated activity cards and footer",
   "released": "2026-10-14",
   "assets": [
-    "existing meadow artwork",
-    "existing Rex, Stan and Jarvis cutouts",
-    "existing activity icons"
+    "wide group hero illustration",
+    "existing individual dinosaur art",
+    "existing activity art"
   ]
 }

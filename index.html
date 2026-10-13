@@ -8,55 +8,59 @@
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" href="./apple-touch-icon.png" type="image/png">
   <link rel="apple-touch-icon" href="./apple-touch-icon.png">
-  <link rel="stylesheet" href="./styles.css?v=0.0.12">
+  <link rel="stylesheet" href="./styles.css?v=0.0.13">
   <title>Dino World</title>
 </head>
 <body>
   <main class="app-shell">
     <header class="topbar">
       <div class="brand-mark" aria-hidden="true">🦖</div>
-      <div class="brand-copy"><h1>Dino World</h1><p>Little explorers, big discoveries!</p></div>
+      <div class="brand-copy"><h1><span class="brand-dino">Dino</span> <span class="brand-world">World</span></h1><p>Little explorers, big discoveries!</p></div>
       <button id="soundToggle" class="sound-button" aria-label="Toggle sound" title="Sound on">🔊</button>
-      <span class="version" id="versionLabel">v0.0.12</span>
     </header>
 
-    <div class="play-layout">
-      <section class="scene-card" aria-label="Dinosaur playground">
-        <div class="scene-visual" aria-label="Rex, Stan and Jarvis exploring Sunny Dino Meadow">
-          <img class="scene-background" data-art="meadow" src="" alt="" aria-hidden="true">
-          <img class="scene-dino scene-rex" data-art="rex" data-dino="rex" src="" alt="Rex the T. rex" role="button" tabindex="0">
-          <img class="scene-dino scene-stan" data-art="stan" data-dino="stan" src="" alt="Stan the Triceratops" role="button" tabindex="0">
-          <img class="scene-dino scene-jarvis" data-art="jarvis" data-dino="jarvis" src="" alt="Jarvis the Brachiosaurus" role="button" tabindex="0">
-          <div class="scene-hud">
-            <button class="scene-label" id="sceneLabel"><span class="sun-dot"></span><span>Sunny Dino Meadow</span></button>
-            <div class="speech-bubble" id="speechBubble" role="status" aria-live="polite">Tap a dinosaur to say hello!</div>
-          </div>
-          <div class="scene-bottom"><span id="weatherText">A lovely day to explore</span><span class="tiny-stars" aria-hidden="true">✦ ✦ ✦</span></div>
+    <section class="scene-card" aria-label="Dinosaur playground">
+      <div class="scene-visual" aria-label="Tap a dinosaur to say hello">
+        <img class="scene-group-art" data-art="hero" src="" alt="Rex the T. rex, Stan the Triceratops and Jarvis the Brachiosaurus in Sunny Dino Meadow">
+        <div class="scene-hud">
+          <div class="scene-label"><span class="sun-dot"></span><span>Sunny Dino Meadow</span></div>
+          <div class="speech-bubble" id="speechBubble" role="status" aria-live="polite">Tap a dinosaur to say hello!</div>
         </div>
-      </section>
+        <div class="scene-bottom"><span id="weatherText">A lovely day to explore</span><span class="tiny-stars" aria-hidden="true">✦ ✦ ✦</span></div>
+      </div>
+    </section>
 
-      <section class="dino-picker" aria-label="Choose a dinosaur">
-        <button class="dino-choice selected" data-dino="rex"><img class="dino-portrait rex-portrait" data-art="rex" src="" alt=""><span>Rex</span><small>T. rex</small></button>
-        <button class="dino-choice" data-dino="stan"><img class="dino-portrait stan-portrait" data-art="stan" src="" alt=""><span>Stan</span><small>Triceratops</small></button>
-        <button class="dino-choice" data-dino="jarvis"><img class="dino-portrait jarvis-portrait" data-art="jarvis" src="" alt=""><span>Jarvis</span><small>Brachiosaurus</small></button>
-      </section>
+    <section class="dino-picker" aria-label="Choose a dinosaur">
+      <button class="dino-choice selected" data-dino="rex"><img class="dino-portrait rex-portrait" data-art="rex" src="" alt=""><span>Rex</span><small>T. rex</small></button>
+      <button class="dino-choice" data-dino="stan"><img class="dino-portrait stan-portrait" data-art="stan" src="" alt=""><span>Stan</span><small>Triceratops</small></button>
+      <button class="dino-choice" data-dino="jarvis"><img class="dino-portrait jarvis-portrait" data-art="jarvis" src="" alt=""><span>Jarvis</span><small>Brachiosaurus</small></button>
+    </section>
 
-      <section class="activity-dock" aria-label="Let's play activities">
-        <div class="dock-heading"><h2>Let's play!</h2><button id="parentButton" class="parent-link">Grown-ups</button></div>
-        <div class="activity-grid">
-          <button class="activity-card egg-card" data-activity="egg" aria-label="Hatch an egg"><img data-art="egg" src="" alt=""><span>Hatch egg</span></button>
-          <button class="activity-card feed-card" data-activity="feed" aria-label="Feed a dinosaur"><img data-art="feed" src="" alt=""><span>Feed dino</span></button>
-          <button class="activity-card learn-card" data-activity="learn" aria-label="Dinosaur quiz"><img data-art="learn" src="" alt=""><span>Dino quiz</span></button>
-          <button class="activity-card dance-card" data-activity="dance" aria-label="Dance time"><img data-art="dance" src="" alt=""><span>Dance time</span></button>
-        </div>
-      </section>
-    </div>
+    <section class="activity-dock" aria-label="Let's play activities">
+      <div class="dock-heading"><div><h2>Let's play!</h2><p>Choose something fun to do.</p></div><span class="dock-sparkle" aria-hidden="true">✦</span></div>
+      <div class="activity-grid">
+        <button class="activity-card egg-card" data-activity="egg" aria-label="Hatch an egg">
+          <img data-art="egg" src="" alt=""><span class="activity-copy"><strong>Hatch an egg</strong><small>Who's inside?</small></span><span class="activity-arrow" aria-hidden="true">›</span>
+        </button>
+        <button class="activity-card feed-card" data-activity="feed" aria-label="Feed a dinosaur">
+          <img data-art="feed" src="" alt=""><span class="activity-copy"><strong>Feed a dino</strong><small>Yum, yum!</small></span><span class="activity-arrow" aria-hidden="true">›</span>
+        </button>
+        <button class="activity-card learn-card" data-activity="learn" aria-label="Dinosaur quiz">
+          <img data-art="learn" src="" alt=""><span class="activity-copy"><strong>Dino quiz</strong><small>Let's discover</small></span><span class="activity-arrow" aria-hidden="true">›</span>
+        </button>
+        <button class="activity-card dance-card" data-activity="dance" aria-label="Dance time">
+          <img data-art="dance" src="" alt=""><span class="activity-copy"><strong>Dance time</strong><small>Wiggle along!</small></span><span class="activity-arrow" aria-hidden="true">›</span>
+        </button>
+      </div>
+    </section>
+
+    <footer class="app-footer"><span>🧡 Made for little dino fans</span><button id="parentButton" class="parent-link">Grown-ups</button><span class="version" id="versionLabel">v0.0.13</span></footer>
   </main>
 
   <div class="modal-backdrop hidden" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-card"><button class="modal-close" id="modalClose" aria-label="Close">✕</button><div class="modal-art" id="modalArt">🥚</div><h2 id="modalTitle">Surprise!</h2><p id="modalText">Let's see what's inside.</p><div id="modalChoices" class="modal-choices"></div><button id="modalAction" class="primary-button">Let's go!</button></div>
   </div>
   <div id="updateToast" class="update-toast hidden" role="status">A new Dino World update is ready…</div>
-  <script src="./artwork.js?v=0.0.12" defer></script><script src="./app.js?v=0.0.12" defer></script>
+  <script src="./artwork.js?v=0.0.13" defer></script><script src="./app.js?v=0.0.13" defer></script>
 </body>
 </html>
