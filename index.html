@@ -8,7 +8,7 @@
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" href="./apple-touch-icon.png" type="image/png">
   <link rel="apple-touch-icon" href="./apple-touch-icon.png">
-  <link rel="stylesheet" href="./styles.css?v=0.0.16">
+  <link rel="stylesheet" href="./styles.css?v=0.0.17">
   <title>Dino World</title>
 </head>
 <body>
@@ -21,7 +21,8 @@
 
     <section class="scene-card" aria-label="Dinosaur playground">
       <div class="scene-visual" aria-label="Tap a dinosaur to say hello">
-        <img class="scene-group-art" data-art="hero" src="" alt="Rex the T. rex, Stan the Triceratops and Jarvis the Brachiosaurus in Sunny Dino Meadow">
+        <img class="scene-background" data-art="meadow" src="" alt="" aria-hidden="true">
+        <img class="scene-main-dino" id="mainDino" data-art="rex" data-dino="rex" src="" alt="Rex the T. rex" role="button" tabindex="0" aria-label="Tap Rex to say hello">
         <div class="scene-hud">
           <div class="scene-label"><span class="sun-dot"></span><span>Sunny Dino Meadow</span></div>
           <div class="speech-bubble" id="speechBubble" role="status" aria-live="polite">Tap a dinosaur to say hello!</div>
@@ -54,13 +55,13 @@
       </div>
     </section>
 
-    <footer class="app-footer"><span>🧡 Made for little dino fans</span><button id="parentButton" class="parent-link">Grown-ups</button><span class="version" id="versionLabel">v0.0.16</span></footer>
+    <footer class="app-footer"><span>🧡 Made for little dino fans</span><button id="parentButton" class="parent-link">Grown-ups</button><span class="version" id="versionLabel">v0.0.17</span></footer>
   </main>
 
   <div class="modal-backdrop hidden" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-card"><button class="modal-close" id="modalClose" aria-label="Close">✕</button><div class="modal-art" id="modalArt">🥚</div><h2 id="modalTitle">Surprise!</h2><p id="modalText">Let's see what's inside.</p><div id="modalChoices" class="modal-choices"></div><button id="modalAction" class="primary-button">Let's go!</button></div>
   </div>
   <div id="updateToast" class="update-toast hidden" role="status">A new Dino World update is ready…</div>
-  <script src="./artwork.js?v=0.0.14" defer></script><script src="./app.js?v=0.0.16" defer></script>
+  <script src="./artwork.js?v=0.0.14" defer></script><script src="./app.js?v=0.0.17" defer></script>
 </body>
 </html>

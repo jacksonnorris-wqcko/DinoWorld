@@ -1,8 +1,10 @@
 {
-  "version": "0.0.16",
-  "release": "Polished Let's Play activity illustrations with dimensional gradients, highlights and shadows while preserving the proven activity-card layout",
+  "version": "0.0.17",
+  "release": "Single-dinosaur playground: selecting Rex, Stan or Jarvis updates the main scene to that dinosaur; tapping the hero repeats its greeting.",
   "released": "2026-10-14",
   "assets": [
-    "inline vector activity illustrations; dinosaur artwork unchanged"
+    "existing meadow background",
+    "existing separate transparent Rex, Stan and Jarvis artwork",
+    "existing activity icons"
   ]
 }

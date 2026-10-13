@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const APP_VERSION = '0.0.16';
+  const APP_VERSION = '0.0.17';
   const $ = id => document.getElementById(id);
   // Essential artwork is embedded in artwork.js so the game still works if a host omits the assets folder.
   function applyArtwork(){ const art=window.DINO_ART||{}; document.querySelectorAll('[data-art]').forEach(el=>{const key=el.getAttribute('data-art'); if(art[key]) { el.src=art[key]; el.classList.remove('art-missing'); } else { el.classList.add('art-missing'); } }); }
@@ -136,7 +136,29 @@
   }
   function animate(now){if(!lastFrame)lastFrame=now;const dt=Math.min(.05,(now-lastFrame)/1000);lastFrame=now;animationTime+=dt;drawWorld();requestAnimationFrame(animate);}
   function speak(text){bubble.textContent=text;if(!soundOn)return;try{if(!audioContext)audioContext=new(window.AudioContext||window.webkitAudioContext)();if(audioContext.state==='suspended')audioContext.resume();const d=dinoData[selected];const osc=audioContext.createOscillator(),gain=audioContext.createGain();osc.type='sine';osc.frequency.setValueAtTime(d.sound,audioContext.currentTime);osc.frequency.exponentialRampToValueAtTime(d.sound*1.25,audioContext.currentTime+.12);gain.gain.setValueAtTime(.0001,audioContext.currentTime);gain.gain.exponentialRampToValueAtTime(.08,audioContext.currentTime+.025);gain.gain.exponentialRampToValueAtTime(.0001,audioContext.currentTime+.22);osc.connect(gain);gain.connect(audioContext.destination);osc.start();osc.stop(audioContext.currentTime+.23);}catch(e){/* Audio is an enhancement; gameplay still works without it. */}}
-  function selectDino(kind,announce=true){selected=kind;document.querySelectorAll('.dino-choice').forEach(b=>b.classList.toggle('selected',b.dataset.dino===kind));animationMode='hello';drawWorld();if(announce)speak(dinoData[kind].greeting);}
+  function selectDino(kind,announce=true){
+    if(!dinoData[kind]) return;
+    selected=kind;
+    document.querySelectorAll('.dino-choice').forEach(b=>{
+      const active=b.dataset.dino===kind;
+      b.classList.toggle('selected',active);
+      b.setAttribute('aria-pressed',String(active));
+    });
+    const hero=$('mainDino');
+    if(hero){
+      const art=(window.DINO_ART||{})[kind];
+      if(art) hero.src=art;
+      hero.dataset.dino=kind;
+      hero.alt=dinoData[kind].name+' the '+dinoData[kind].full;
+      hero.setAttribute('aria-label','Tap '+dinoData[kind].name+' to say hello');
+      hero.classList.remove('play-bounce');
+      void hero.offsetWidth;
+      hero.classList.add('play-bounce');
+    }
+    animationMode='hello';
+    drawWorld();
+    if(announce) speak(dinoData[kind].greeting);
+  }
   function openModal({art,title,text,choices=[],action="Let's go!",onAction=null}){modalArt.textContent=art;modalTitle.textContent=title;modalText.textContent=text;modalChoices.innerHTML='';modalAction.textContent=action;modalAction.onclick=()=>{if(onAction)onAction();else closeModal();};choices.forEach(c=>{const b=document.createElement('button');b.className='choice-button';b.textContent=c.label;b.onclick=()=>c.onClick();modalChoices.appendChild(b);});modal.classList.remove('hidden');}
   function closeModal(){modal.classList.add('hidden');activity=null;animationMode='idle';drawWorld();}
   function doEgg(){activity='egg';animationMode='egg';openModal({art:'🥚',title:'A little surprise!',text:'Tap the egg to help it hatch. Who could be inside?',action:'Hatch the egg!',onAction:()=>{modalArt.textContent='✨';modalTitle.textContent='Crack, crack, CRACK!';modalText.textContent='A tiny dinosaur is coming out!';modalAction.textContent='Meet the baby!';modalAction.onclick=()=>{const keys=Object.keys(dinoData);const born=keys[Math.floor(Math.random()*keys.length)];selectDino(born,false);modalArt.textContent=dinoData[born].emoji;modalTitle.textContent='Hello, baby '+dinoData[born].name+'!';modalText.textContent='You helped a dinosaur hatch. '+dinoData[born].greeting;modalAction.textContent='Hooray!';modalAction.onclick=closeModal;celebrate();};celebrate();}});}
@@ -146,6 +168,19 @@
   function doDance(){activity='dance';animationMode='dance';openModal({art:'🎵',title:'Dance time!',text:dinoData[selected].name+' is ready to wiggle. Can you dance too?',action:'Wiggle, wiggle!',onAction:()=>{animationMode='dance';modalArt.textContent='💃';modalTitle.textContent='Great dancing!';modalText.textContent='Wiggle, wiggle, ROAR! You are a dino dance star.';modalAction.textContent='Dance again';modalAction.onclick=doDance;celebrate();}});}
   function celebrate(){if(!soundOn)return;try{if(!audioContext)audioContext=new(window.AudioContext||window.webkitAudioContext)();if(audioContext.state==='suspended')audioContext.resume();[523,659,784].forEach((f,i)=>{const o=audioContext.createOscillator(),g=audioContext.createGain();o.frequency.value=f;o.type='sine';g.gain.setValueAtTime(.0001,audioContext.currentTime+i*.09);g.gain.exponentialRampToValueAtTime(.055,audioContext.currentTime+i*.09+.025);g.gain.exponentialRampToValueAtTime(.0001,audioContext.currentTime+i*.09+.18);o.connect(g);g.connect(audioContext.destination);o.start(audioContext.currentTime+i*.09);o.stop(audioContext.currentTime+i*.09+.2);});}catch(e){}}
   document.querySelectorAll('.dino-choice').forEach(b=>b.addEventListener('click',()=>selectDino(b.dataset.dino)));
+  const mainDino=$('mainDino');
+  if(mainDino){
+    const greetSelected=()=>{
+      mainDino.classList.remove('play-bounce');
+      void mainDino.offsetWidth;
+      mainDino.classList.add('play-bounce');
+      speak(dinoData[selected].greeting);
+    };
+    mainDino.addEventListener('click',greetSelected);
+    mainDino.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();greetSelected();}
+    });
+  }
   document.querySelectorAll('.scene-dino').forEach(img=>{
     img.addEventListener('click',e=>{e.stopPropagation();selectDino(img.dataset.dino);});
     img.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectDino(img.dataset.dino);}});
