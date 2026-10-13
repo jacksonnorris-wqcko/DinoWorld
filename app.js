@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const APP_VERSION = '0.0.5';
+  const APP_VERSION = '0.0.6';
   const $ = id => document.getElementById(id);
   // Essential artwork is embedded in artwork.js so the game still works if a host omits the assets folder.
   function applyArtwork(){ const art=window.DINO_ART||{}; document.querySelectorAll('[data-art]').forEach(el=>{const key=el.getAttribute('data-art'); if(art[key]) el.src=art[key];}); }
@@ -151,12 +151,6 @@
   $('sceneLabel').addEventListener('click',()=>selectDino(selected));
   $('sceneLabel').parentElement.parentElement.addEventListener('click',e=>{if(e.target.closest('.scene-label')||e.target.closest('.speech-bubble'))return;const rect=e.currentTarget.getBoundingClientRect();const rel=(e.clientX-rect.left)/rect.width;if(rel<.34)selectDino('rex');else if(rel<.68)selectDino('stan');else selectDino('jarvis');});
   $('versionLabel').textContent='v'+APP_VERSION;
-  // The generated concept boards are bundled as local art references for future sprite extraction.
-  document.querySelectorAll('.activity-card').forEach((card,i)=>{
-    const artFiles=['eggs-food-sheet.jpg','eggs-food-sheet.jpg','icons-sheet.jpg','icons-sheet.jpg'];
-    card.style.backgroundImage='linear-gradient(rgba(255,255,255,.12),rgba(255,255,255,.12))';
-    card.dataset.artPack='concept-board-04';
-  });
   window.addEventListener('resize',resizeCanvas,{passive:true});resizeCanvas();requestAnimationFrame(animate);
 
   // PWA install and automatic update support. The app checks on open and every 60 seconds.
