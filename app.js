@@ -1,7 +1,10 @@
 (() => {
   'use strict';
-  const APP_VERSION = '0.0.4';
+  const APP_VERSION = '0.0.5';
   const $ = id => document.getElementById(id);
+  // Essential artwork is embedded in artwork.js so the game still works if a host omits the assets folder.
+  function applyArtwork(){ const art=window.DINO_ART||{}; document.querySelectorAll('[data-art]').forEach(el=>{const key=el.getAttribute('data-art'); if(art[key]) el.src=art[key];}); }
+  applyArtwork();
   const canvas = $('worldCanvas');
   const ctx = canvas.getContext('2d');
   const bubble = $('speechBubble');
@@ -22,7 +25,7 @@
   let canvasW = 600, canvasH = 300;
   const dinoData = {
     rex: {name:'Rex', full:'Tyrannosaurus rex', color:'#55c97c', dark:'#29995b', light:'#a2efae', accent:'#f7d66e', emoji:'🦖', greeting:'Hi! I’m Rex. Roar-some to meet you!', fact:'Rex was a meat-eating dinosaur with a very big head and strong legs.', sound:180},
-    stan: {name:'Stan', full:'Stegosaurus', color:'#ffa76e', dark:'#e9794e', light:'#ffd0a2', accent:'#fff1be', emoji:'🦕', greeting:'Hi! I’m Stan the Stegosaurus. Look at my plates!', fact:'Stegosaurus had big plates along its back and spikes on its tail. It ate plants.', sound:230},
+    stan: {name:'Stan', full:'Triceratops', color:'#ffa76e', dark:'#e9794e', light:'#ffd0a2', accent:'#fff1be', emoji:'🦕', greeting:'Hi! I’m Stan the Triceratops. Look at my horns!', fact:'Triceratops had three facial horns and a large bony frill. It ate plants.', sound:230},
     jarvis: {name:'Jarvis', full:'Brachiosaurus', color:'#65c5ed', dark:'#369bc9', light:'#a8e5fa', accent:'#ffe49b', emoji:'🦕', greeting:'Hello up there! I’m Jarvis the Brachiosaurus!', fact:'Brachiosaurus had a very long neck and front legs longer than its back legs. It ate plants.', sound:260}
   };
   function resizeCanvas(){

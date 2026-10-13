@@ -1,11 +1,9 @@
 {
-  "version": "0.0.4",
-  "release": "Custom Dino World art pack and visual polish",
+  "version": "0.0.5",
+  "release": "Fix embedded art loading, activity icons and iOS home screen icon; correct Stan to Triceratops",
   "released": "2026-10-13",
   "assets": [
-    "concept-board-01.png",
-    "concept-board-02.png",
-    "concept-board-03.png",
-    "concept-board-04.png"
+    "embedded essential art",
+    "apple-touch-icon.png"
   ]
 }

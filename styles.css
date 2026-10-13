@@ -10,3 +10,6 @@
 .scene-card{min-height:274px}
 @media(min-width:520px){.scene-card{min-height:310px}}
 @media(max-height:740px){.scene-card{min-height:230px}}
+
+/* v0.0.5: robust embedded artwork and app icon */
+.activity-art img{display:block;width:100%;height:100%;object-fit:contain;border-radius:10px}.activity-art{overflow:hidden;padding:3px}.scene-artwork{background:#b9e8ff;object-position:center 35%}.dino-portrait{background:#e5f8ec;object-fit:contain}.brand-mark{background:#fff url("./apple-touch-icon.png") center/contain no-repeat;font-size:0}
