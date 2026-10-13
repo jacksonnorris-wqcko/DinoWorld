@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#a8e6c0">
+  <meta name="description" content="Dino World is a friendly dinosaur playground for little explorers.">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Dino World</title>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">🦖</div>
+      <div class="brand-copy"><h1>Dino World</h1><p>Little explorers, big discoveries!</p></div>
+      <button id="soundToggle" class="sound-button" aria-label="Toggle sound" title="Sound on">🔊</button>
+    </header>
+
+    <section class="scene-card" aria-label="Dinosaur playground">
+      <div class="scene-label"><span class="sun-dot"></span><span id="sceneLabel">Sunny Dino Meadow</span></div>
+      <canvas id="worldCanvas" aria-label="A colourful dinosaur meadow with three friendly dinosaurs"></canvas>
+      <div class="speech-bubble" id="speechBubble" role="status" aria-live="polite">Tap a dinosaur to say hello!</div>
+      <div class="scene-bottom"><span>☁️ <span id="weatherText">A lovely day to explore</span></span><span class="tiny-stars">✦ ✦ ✦</span></div>
+    </section>
+
+    <section class="dino-picker" aria-label="Choose a dinosaur">
+      <button class="dino-choice selected" data-dino="rex"><span class="dino-emoji">🦖</span><span>Rex</span><small>T. rex</small></button>
+      <button class="dino-choice" data-dino="trixie"><span class="dino-emoji">🦕</span><span>Trixie</span><small>Triceratops</small></button>
+      <button class="dino-choice" data-dino="benny"><span class="dino-emoji">🦕</span><span>Benny</span><small>Long-neck</small></button>
+    </section>
+
+    <section class="activity-section">
+      <div class="section-heading"><div><h2>Let's play!</h2><p>Choose something fun to do.</p></div><span class="sparkle" aria-hidden="true">✨</span></div>
+      <div class="activity-grid">
+        <button class="activity-card egg-card" data-activity="egg"><span class="activity-art">🥚</span><span class="activity-name">Hatch an egg</span><span class="activity-hint">Who's inside?</span></button>
+        <button class="activity-card feed-card" data-activity="feed"><span class="activity-art">🥬</span><span class="activity-name">Feed a dino</span><span class="activity-hint">Yum, yum!</span></button>
+        <button class="activity-card learn-card" data-activity="learn"><span class="activity-art">🌈</span><span class="activity-name">Dino quiz</span><span class="activity-hint">Let's discover</span></button>
+        <button class="activity-card dance-card" data-activity="dance"><span class="activity-art">🎵</span><span class="activity-name">Dance time</span><span class="activity-hint">Wiggle along!</span></button>
+      </div>
+    </section>
+
+    <footer class="footer"><span>Made for little dino fans 💚</span><button id="parentButton" class="parent-link">Grown-ups</button><span class="version" id="versionLabel">v0.0.1</span></footer>
+  </main>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <div class="modal-art" id="modalArt">🥚</div>
+      <h2 id="modalTitle">Surprise!</h2>
+      <p id="modalText">Let's see what's inside.</p>
+      <div id="modalChoices" class="modal-choices"></div>
+      <button id="modalAction" class="primary-button">Let's go!</button>
+    </div>
+  </div>
+
+  <div id="updateToast" class="update-toast hidden" role="status">A new Dino World update is ready…</div>
+  <script src="./app.js" defer></script>
+</body>
+</html>

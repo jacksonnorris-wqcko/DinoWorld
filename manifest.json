@@ -1,0 +1,14 @@
+{
+  "name": "Dino World",
+  "short_name": "Dino World",
+  "description": "A friendly dinosaur playground for little explorers.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#eaf8ef",
+  "theme_color": "#a8e6c0",
+  "icons": [
+    {"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
