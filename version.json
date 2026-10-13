@@ -1,8 +1,8 @@
 {
-  "version": "0.0.14",
-  "release": "Fixed activity tile icon scaling and text layout for iPhone; removed mobile arrows to give content more width",
+  "version": "0.0.15",
+  "release": "Rebuilt Let's Play activity cards with bounded inline vector illustrations and a strict two-column icon/text layout; removed raster icons that appeared cropped",
   "released": "2026-10-14",
   "assets": [
-    "existing artwork preserved"
+    "inline vector activity illustrations; existing dinosaur artwork unchanged"
   ]
 }
