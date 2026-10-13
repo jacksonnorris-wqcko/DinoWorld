@@ -1,14 +1,16 @@
-# Dino World v0.0.7
+# Dino World v0.0.8 — changed files only
 
-## What changed
-- Reframed the hero artwork to remove the stray wooden banner and give the characters breathing room.
-- Replaced zoomed-in character portraits with individual contained portraits so heads and bodies are not cut off.
-- Reworked the mobile layout rules into one authoritative responsive block, avoiding conflicting historical CSS overrides.
-- Adjusted speech bubble and scene-caption overlays to reduce obstruction of dinosaur artwork.
-- Refined activity-card icon/text sizing for narrow iPhone screens.
-- Updated app version, service-worker cache and version metadata to 0.0.7.
+This incremental patch contains only the changed files: `index.html`, `styles.css`, `app.js`, `artwork.js`, `sw.js`, and `version.json`.
 
-## Deploy
-Upload the contents of this folder to the root of the existing GitHub Pages repository, replacing the old files. Keep `index.html`, `styles.css`, `app.js`, `artwork.js`, `sw.js`, `manifest.json`, `version.json`, and `apple-touch-icon.png` together at the repository root.
+## Upload
+Upload these six files to the ROOT of the existing GitHub repository, replacing the files with the same names. Do not upload this folder as a nested folder. Commit and wait for GitHub Pages to deploy.
 
-After deployment, open the site in Safari and confirm the footer says v0.0.7. If the Home Screen app stays stale, fully close and reopen it; for the icon, remove and re-add the Home Screen shortcut.
+## Main fixes
+- Scene label and speech bubble now live in a dedicated toolbar above the artwork; no text is placed over the dinosaurs.
+- Hero art is cropped to remove blurred padding.
+- Character cards use dedicated portrait crops, not sections of the full hero image.
+- Activity cards use fixed icon columns and flexible text columns to reduce overlap on narrow screens.
+- CSS was consolidated into one responsive layout rather than layering overrides.
+- App and service-worker cache version bumped to 0.0.8.
+
+Confirm the footer says v0.0.8 after deployment.

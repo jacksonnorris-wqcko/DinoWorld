@@ -1,5 +1,5 @@
-/* Dino World v0.0.6 updater. Essential art is embedded in artwork.js. */
-const CACHE_VERSION = 'dino-world-v0.0.7';
+/* Dino World v0.0.8 updater */
+const CACHE_VERSION = 'dino-world-v0.0.8';
 const APP_PREFIX = 'dino-world-';
 const APP_SHELL = ['./', './index.html', './styles.css', './app.js', './artwork.js', './manifest.json', './version.json', './icon.svg', './apple-touch-icon.png'];
 self.addEventListener('install', event => { event.waitUntil((async()=>{ const cache=await caches.open(CACHE_VERSION); await cache.addAll(APP_SHELL); await self.skipWaiting(); })()); });

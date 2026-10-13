@@ -1,11 +1,10 @@
 {
-  "version": "0.0.7",
-  "release": "Careful mobile UI correction: no character crop, clean hero framing, consistent activity cards and spacing",
+  "version": "0.0.8",
+  "release": "Rebuilt scene layout with no overlays on dinosaurs, clean image crops and balanced responsive cards",
   "released": "2026-10-13",
   "assets": [
-    "reframed hero artwork",
-    "separate uncropped character portraits",
-    "activity artwork",
-    "updated iPhone icon"
+    "clean hero artwork",
+    "individually framed character portraits",
+    "activity icons"
   ]
 }

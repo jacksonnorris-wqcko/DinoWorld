@@ -2,8 +2,8 @@
 <html lang="en-AU">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
-  <meta name="theme-color" content="#a8e6c0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#eaf8ef">
   <meta name="description" content="Dino World is a friendly dinosaur playground for little explorers.">
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" href="./apple-touch-icon.png" type="image/png">
@@ -20,11 +20,15 @@
     </header>
 
     <section class="scene-card" aria-label="Dinosaur playground">
-      <div class="scene-label"><span class="sun-dot"></span><span id="sceneLabel">Sunny Dino Meadow</span></div>
-      <img class="scene-artwork" data-art="hero" src="" alt="Rex the Rex the T. rex, Stan the Triceratops and Jarvis the Brachiosaurus in their meadow">
+      <div class="scene-toolbar">
+        <div class="scene-label"><span class="sun-dot"></span><span id="sceneLabel">Sunny Dino Meadow</span></div>
+        <div class="speech-bubble" id="speechBubble" role="status" aria-live="polite">Tap a dinosaur to say hello!</div>
+      </div>
+      <div class="scene-visual">
+        <img class="scene-artwork" data-art="hero" src="" alt="Rex the T. rex, Stan the Triceratops and Jarvis the Brachiosaurus in their meadow">
+      </div>
+      <div class="scene-bottom"><span>☁️ <span id="weatherText">A lovely day to explore</span></span><span class="tiny-stars" aria-hidden="true">✦ ✦ ✦</span></div>
       <canvas id="worldCanvas" aria-label="Interactive dinosaur meadow"></canvas>
-      <div class="speech-bubble" id="speechBubble" role="status" aria-live="polite">Tap a dinosaur to say hello!</div>
-      <div class="scene-bottom"><span>☁️ <span id="weatherText">A lovely day to explore</span></span><span class="tiny-stars">✦ ✦ ✦</span></div>
     </section>
 
     <section class="dino-picker" aria-label="Choose a dinosaur">
@@ -36,29 +40,16 @@
     <section class="activity-section">
       <div class="section-heading"><div><h2>Let's play!</h2><p>Choose something fun to do.</p></div><span class="sparkle" aria-hidden="true">✨</span></div>
       <div class="activity-grid">
-        <button class="activity-card egg-card" data-activity="egg"><span class="activity-art"><img data-art="egg" src="" alt="" /></span><span class="activity-name">Hatch an egg</span><span class="activity-hint">Who's inside?</span></button>
-        <button class="activity-card feed-card" data-activity="feed"><span class="activity-art"><img data-art="feed" src="" alt="" /></span><span class="activity-name">Feed a dino</span><span class="activity-hint">Yum, yum!</span></button>
-        <button class="activity-card learn-card" data-activity="learn"><span class="activity-art"><img data-art="learn" src="" alt="" /></span><span class="activity-name">Dino quiz</span><span class="activity-hint">Let's discover</span></button>
-        <button class="activity-card dance-card" data-activity="dance"><span class="activity-art"><img data-art="dance" src="" alt="" /></span><span class="activity-name">Dance time</span><span class="activity-hint">Wiggle along!</span></button>
+        <button class="activity-card egg-card" data-activity="egg"><span class="activity-art"><img data-art="egg" src="" alt=""></span><span class="activity-copy"><span class="activity-name">Hatch an egg</span><span class="activity-hint">Who's inside?</span></span></button>
+        <button class="activity-card feed-card" data-activity="feed"><span class="activity-art"><img data-art="feed" src="" alt=""></span><span class="activity-copy"><span class="activity-name">Feed a dino</span><span class="activity-hint">Yum, yum!</span></span></button>
+        <button class="activity-card learn-card" data-activity="learn"><span class="activity-art"><img data-art="learn" src="" alt=""></span><span class="activity-copy"><span class="activity-name">Dino quiz</span><span class="activity-hint">Let's discover</span></span></button>
+        <button class="activity-card dance-card" data-activity="dance"><span class="activity-art"><img data-art="dance" src="" alt=""></span><span class="activity-copy"><span class="activity-name">Dance time</span><span class="activity-hint">Wiggle along!</span></span></button>
       </div>
     </section>
 
-    <footer class="footer"><span>Made for little dino fans 💚</span><button id="parentButton" class="parent-link">Grown-ups</button><span class="version" id="versionLabel">v0.0.7</span></footer>
+    <footer class="footer"><span>Made for little dino fans 💚</span><button id="parentButton" class="parent-link">Grown-ups</button><span class="version" id="versionLabel">v0.0.8</span></footer>
   </main>
-
-  <div class="modal-backdrop hidden" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-card">
-      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
-      <div class="modal-art" id="modalArt">🥚</div>
-      <h2 id="modalTitle">Surprise!</h2>
-      <p id="modalText">Let's see what's inside.</p>
-      <div id="modalChoices" class="modal-choices"></div>
-      <button id="modalAction" class="primary-button">Let's go!</button>
-    </div>
-  </div>
-
+  <div class="modal-backdrop hidden" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-card"><button class="modal-close" id="modalClose" aria-label="Close">✕</button><div class="modal-art" id="modalArt">🥚</div><h2 id="modalTitle">Surprise!</h2><p id="modalText">Let's see what's inside.</p><div id="modalChoices" class="modal-choices"></div><button id="modalAction" class="primary-button">Let's go!</button></div></div>
   <div id="updateToast" class="update-toast hidden" role="status">A new Dino World update is ready…</div>
-  <script src="./artwork.js" defer></script>
-  <script src="./app.js" defer></script>
-</body>
-</html>
+  <script src="./artwork.js" defer></script><script src="./app.js" defer></script>
+</body></html>
