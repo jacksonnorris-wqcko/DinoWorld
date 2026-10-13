@@ -1,8 +1,8 @@
 {
-  "version": "0.0.15",
-  "release": "Rebuilt Let's Play activity cards with bounded inline vector illustrations and a strict two-column icon/text layout; removed raster icons that appeared cropped",
+  "version": "0.0.16",
+  "release": "Polished Let's Play activity illustrations with dimensional gradients, highlights and shadows while preserving the proven activity-card layout",
   "released": "2026-10-14",
   "assets": [
-    "inline vector activity illustrations; existing dinosaur artwork unchanged"
+    "inline vector activity illustrations; dinosaur artwork unchanged"
   ]
 }

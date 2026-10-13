@@ -1,4 +1,6 @@
-Dino World v0.0.15 — targeted Let's Play fix
+Dino World v0.0.16 — changed files only
+
+This update keeps the proven v0.0.15 layout and improves the four Let's Play illustrations to a more dimensional, polished cartoon style.
 
 Replace these five files in the ROOT of your existing GitHub repository:
 - index.html
@@ -7,12 +9,6 @@ Replace these five files in the ROOT of your existing GitHub repository:
 - sw.js
 - version.json
 
-Do not replace artwork.js; the dinosaur artwork has not changed.
+Do not replace artwork.js; dinosaur artwork is unchanged.
 
-What changed:
-- Removed the old square raster activity icons from the Let's Play buttons.
-- Replaced them with self-contained vector illustrations that scale within a fixed icon frame.
-- Used a strict two-column card layout: bounded icon + flexible text. No arrow column.
-- Bumped version and service-worker cache to 0.0.15 and cache-busted CSS/JS.
-
-Extract the ZIP first. Upload the five files to the repository root, commit, wait for GitHub Pages to deploy, then close/reopen the app and confirm v0.0.15.
+Extract the ZIP first, upload the five files to the repository root, commit, wait for GitHub Pages to deploy, then close/reopen Dino World and confirm v0.0.16.
