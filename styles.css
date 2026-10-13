@@ -213,3 +213,33 @@ button{font:inherit;touch-action:manipulation;cursor:pointer}
     left:39%;
   }
 }
+
+/* v0.0.19 — normalize the visual scale of the three character cut-outs.
+   Jarvis needs more vertical presence because his art is naturally much taller/narrower. */
+.scene-main-dino{
+  bottom:1.5%;
+  object-position:center bottom;
+}
+.scene-main-dino[data-dino="rex"]{
+  height:72%;
+  max-width:64%;
+  left:50%;
+}
+.scene-main-dino[data-dino="stan"]{
+  height:70%;
+  max-width:70%;
+  left:50%;
+}
+.scene-main-dino[data-dino="jarvis"]{
+  height:88%;
+  max-width:58%;
+  left:39%;
+}
+@media(max-height:740px){
+  .scene-main-dino[data-dino="rex"]{height:69%;max-width:64%;left:50%}
+  .scene-main-dino[data-dino="stan"]{height:67%;max-width:70%;left:50%}
+  .scene-main-dino[data-dino="jarvis"]{height:84%;max-width:56%;left:39%}
+}
+/* The speech bubble must remain above the character without covering its face. */
+.speech-bubble{z-index:5}
+.scene-main-dino{z-index:2}

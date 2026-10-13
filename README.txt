@@ -1,6 +1,6 @@
-Dino World v0.0.18 — focused layout fix
+Dino World v0.0.19 — character scale and placement fix
 
-Replace these five files in the ROOT of your existing GitHub repository:
+Replace these five files in the ROOT of the existing GitHub repository:
 - index.html
 - styles.css
 - app.js
@@ -9,9 +9,11 @@ Replace these five files in the ROOT of your existing GitHub repository:
 
 Leave artwork.js and all other files unchanged.
 
-Fix:
-- Jarvis is scaled down slightly and shifted left so his head does not sit behind the greeting bubble.
-- Rex and Stan sizing is unchanged.
-- Version/cache updated to v0.0.18.
+Changes:
+- Corrected a conflicting short-screen CSS rule that was shrinking Jarvis too much.
+- Jarvis is taller again and remains left of the speech bubble.
+- Rex and Stan use explicit, stable scales and share the same bottom/ground alignment.
+- The greeting bubble remains above the dinosaur but should not cover the face.
+- Version/cache references updated to v0.0.19.
 
-After committing, wait for GitHub Pages to deploy, then close and reopen the app and confirm the footer says v0.0.18.
+This changes layout only; it does not regenerate or replace the underlying character artwork. Check the result on the iPhone after deployment.

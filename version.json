@@ -1,6 +1,6 @@
 {
-  "version": "0.0.18",
-  "release": "Adjusted Jarvis's size and horizontal position so his head stays clear of the greeting bubble on iPhone screens. Rex and Stan sizing remains unchanged.",
+  "version": "0.0.19",
+  "release": "Character scale and placement pass: Jarvis has regained tall-neck proportions on short iPhone screens; Rex and Stan have consistent ground alignment and preserved sizing.",
   "released": "2026-10-14",
   "assets": [
     "existing meadow background",
