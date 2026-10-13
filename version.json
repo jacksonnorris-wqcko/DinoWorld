@@ -1,10 +1,11 @@
 {
-  "version": "0.0.6",
-  "release": "Responsive UI polish, improved hero framing and character image scaling, activity card layout refinement",
+  "version": "0.0.7",
+  "release": "Careful mobile UI correction: no character crop, clean hero framing, consistent activity cards and spacing",
   "released": "2026-10-13",
   "assets": [
-    "embedded responsive hero and character artwork",
-    "embedded activity artwork",
-    "apple-touch-icon.png"
+    "reframed hero artwork",
+    "separate uncropped character portraits",
+    "activity artwork",
+    "updated iPhone icon"
   ]
 }

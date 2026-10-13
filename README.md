@@ -1,20 +1,14 @@
-# Dino World v0.0.6
+# Dino World v0.0.7
 
-## Fixes in this release
-- Essential game artwork is embedded in `artwork.js`, so the hero and activity art do not depend on uploading an `assets/` directory.
-- The four “Let’s play” cards use custom cropped artwork from the generated UI sheet.
-- Added `apple-touch-icon.png` and linked it through the HTML and web manifest.
-- Service worker cache version bumped to `d0.0.6` and now includes `artwork.js` and the iPhone icon.
-- Stan is now labelled and described as a Triceratops, matching the agreed cast: Rex the T. rex, Stan the Triceratops, Jarvis the Brachiosaurus.
+## What changed
+- Reframed the hero artwork to remove the stray wooden banner and give the characters breathing room.
+- Replaced zoomed-in character portraits with individual contained portraits so heads and bodies are not cut off.
+- Reworked the mobile layout rules into one authoritative responsive block, avoiding conflicting historical CSS overrides.
+- Adjusted speech bubble and scene-caption overlays to reduce obstruction of dinosaur artwork.
+- Refined activity-card icon/text sizing for narrow iPhone screens.
+- Updated app version, service-worker cache and version metadata to 0.0.7.
 
-## Upload to GitHub
-Upload **all files in this folder** to the root of the existing repository, replacing old files. Make sure `artwork.js`, `apple-touch-icon.png`, `index.html`, `app.js`, `styles.css`, `manifest.json`, `version.json`, and `sw.js` are all at the repository root. The essential artwork is embedded, so the `assets/` folder is not required for the main screen to display. Commit changes and wait for GitHub Pages to deploy.
+## Deploy
+Upload the contents of this folder to the root of the existing GitHub Pages repository, replacing the old files. Keep `index.html`, `styles.css`, `app.js`, `artwork.js`, `sw.js`, `manifest.json`, `version.json`, and `apple-touch-icon.png` together at the repository root.
 
-## iPhone Home Screen icon
-Safari/iOS can keep the old Home Screen icon even after the website updates. After the new version is live, remove the old Dino World shortcut from the Home Screen and add it again from Safari using Share → Add to Home Screen.
-
-## Auto-updates
-The service worker cache is versioned `dino-world-v0.0.6`. It checks the network-first for the app shell and removes older Dino World caches on activation. Real-device update behaviour should still be tested after deployment.
-
-
-Version 0.0.6 focuses on mobile image scaling, cleaner hero framing, more balanced activity cards, and the corrected Triceratops label.
+After deployment, open the site in Safari and confirm the footer says v0.0.7. If the Home Screen app stays stale, fully close and reopen it; for the icon, remove and re-add the Home Screen shortcut.
