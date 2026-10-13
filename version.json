@@ -1,10 +1,10 @@
 {
-  "version": "0.0.9",
-  "release": "Removed legacy canvas meadow that duplicated the custom hero artwork; single-scene layout fix",
+  "version": "0.0.10",
+  "release": "Rebuilt meadow scene with separate transparent dinosaur characters; fixed card image framing and activity tile sizing; corrected iOS standalone top safe area.",
   "released": "2026-10-13",
   "assets": [
-    "existing hero artwork",
-    "existing individual dinosaur portraits",
-    "existing activity icons"
+    "meadow background",
+    "transparent Rex, Stan and Jarvis characters",
+    "existing custom activity icons"
   ]
 }

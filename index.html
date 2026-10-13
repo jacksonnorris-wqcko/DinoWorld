@@ -24,16 +24,20 @@
         <div class="scene-label"><span class="sun-dot"></span><span id="sceneLabel">Sunny Dino Meadow</span></div>
         <div class="speech-bubble" id="speechBubble" role="status" aria-live="polite">Tap a dinosaur to say hello!</div>
       </div>
-      <div class="scene-visual">
-        <img class="scene-artwork" data-art="hero" src="" alt="Rex the T. rex, Stan the Triceratops and Jarvis the Brachiosaurus in their meadow">
+      <div class="scene-visual" aria-label="Rex, Stan and Jarvis exploring Sunny Dino Meadow">
+        <img class="scene-background" data-art="meadow" src="" alt="" aria-hidden="true">
+        <img class="scene-dino scene-rex" data-art="rex" data-dino="rex" src="" alt="" aria-hidden="true">
+        <img class="scene-dino scene-stan" data-art="stan" data-dino="stan" src="" alt="" aria-hidden="true">
+        <img class="scene-dino scene-jarvis" data-art="jarvis" data-dino="jarvis" src="" alt="" aria-hidden="true">
       </div>
       <div class="scene-bottom"><span>☁️ <span id="weatherText">A lovely day to explore</span></span><span class="tiny-stars" aria-hidden="true">✦ ✦ ✦</span></div>
+      <canvas id="worldCanvas" aria-label="Interactive dinosaur meadow"></canvas>
     </section>
 
     <section class="dino-picker" aria-label="Choose a dinosaur">
-      <button class="dino-choice selected" data-dino="rex"><img class="dino-portrait rex-portrait" data-art="rex" src="" alt=""><span>Rex</span><small>T. rex</small></button>
-      <button class="dino-choice" data-dino="stan"><img class="dino-portrait stan-portrait" data-art="stan" src="" alt=""><span>Stan</span><small>Triceratops</small></button>
-      <button class="dino-choice" data-dino="jarvis"><img class="dino-portrait jarvis-portrait" data-art="jarvis" src="" alt=""><span>Jarvis</span><small>Brachiosaurus</small></button>
+      <button class="dino-choice selected" data-dino="rex"><img class="dino-portrait rex-portrait" data-art="rex" src="" alt="Rex the T. rex"><span>Rex</span><small>T. rex</small></button>
+      <button class="dino-choice" data-dino="stan"><img class="dino-portrait stan-portrait" data-art="stan" src="" alt="Stan the Triceratops"><span>Stan</span><small>Triceratops</small></button>
+      <button class="dino-choice" data-dino="jarvis"><img class="dino-portrait jarvis-portrait" data-art="jarvis" src="" alt="Jarvis the Brachiosaurus"><span>Jarvis</span><small>Brachiosaurus</small></button>
     </section>
 
     <section class="activity-section">
@@ -46,7 +50,7 @@
       </div>
     </section>
 
-    <footer class="footer"><span>Made for little dino fans 💚</span><button id="parentButton" class="parent-link">Grown-ups</button><span class="version" id="versionLabel">v0.0.9</span></footer>
+    <footer class="footer"><span>Made for little dino fans 💚</span><button id="parentButton" class="parent-link">Grown-ups</button><span class="version" id="versionLabel">v0.0.10</span></footer>
   </main>
   <div class="modal-backdrop hidden" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-card"><button class="modal-close" id="modalClose" aria-label="Close">✕</button><div class="modal-art" id="modalArt">🥚</div><h2 id="modalTitle">Surprise!</h2><p id="modalText">Let's see what's inside.</p><div id="modalChoices" class="modal-choices"></div><button id="modalAction" class="primary-button">Let's go!</button></div></div>
   <div id="updateToast" class="update-toast hidden" role="status">A new Dino World update is ready…</div>
