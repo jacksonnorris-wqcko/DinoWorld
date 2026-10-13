@@ -1,12 +1,13 @@
 (() => {
   'use strict';
-  const APP_VERSION = '0.0.10';
+  const APP_VERSION = '0.0.11';
   const $ = id => document.getElementById(id);
   // Essential artwork is embedded in artwork.js so the game still works if a host omits the assets folder.
   function applyArtwork(){ const art=window.DINO_ART||{}; document.querySelectorAll('[data-art]').forEach(el=>{const key=el.getAttribute('data-art'); if(art[key]) el.src=art[key];}); }
   applyArtwork();
-  const canvas = $('worldCanvas');
-  const ctx = canvas ? canvas.getContext('2d') : null;
+  // v0.0.11 uses the image-based meadow scene; the legacy canvas has been removed.
+  const canvas = null;
+  const ctx = null;
   const bubble = $('speechBubble');
   const modal = $('modalBackdrop');
   const modalArt = $('modalArt');
@@ -145,7 +146,10 @@
   function doDance(){activity='dance';animationMode='dance';openModal({art:'🎵',title:'Dance time!',text:dinoData[selected].name+' is ready to wiggle. Can you dance too?',action:'Wiggle, wiggle!',onAction:()=>{animationMode='dance';modalArt.textContent='💃';modalTitle.textContent='Great dancing!';modalText.textContent='Wiggle, wiggle, ROAR! You are a dino dance star.';modalAction.textContent='Dance again';modalAction.onclick=doDance;celebrate();}});}
   function celebrate(){if(!soundOn)return;try{if(!audioContext)audioContext=new(window.AudioContext||window.webkitAudioContext)();if(audioContext.state==='suspended')audioContext.resume();[523,659,784].forEach((f,i)=>{const o=audioContext.createOscillator(),g=audioContext.createGain();o.frequency.value=f;o.type='sine';g.gain.setValueAtTime(.0001,audioContext.currentTime+i*.09);g.gain.exponentialRampToValueAtTime(.055,audioContext.currentTime+i*.09+.025);g.gain.exponentialRampToValueAtTime(.0001,audioContext.currentTime+i*.09+.18);o.connect(g);g.connect(audioContext.destination);o.start(audioContext.currentTime+i*.09);o.stop(audioContext.currentTime+i*.09+.2);});}catch(e){}}
   document.querySelectorAll('.dino-choice').forEach(b=>b.addEventListener('click',()=>selectDino(b.dataset.dino)));
-  document.querySelectorAll('.scene-dino').forEach(img=>img.addEventListener('click',e=>{e.stopPropagation();selectDino(img.dataset.dino);}));
+  document.querySelectorAll('.scene-dino').forEach(img=>{
+    img.addEventListener('click',e=>{e.stopPropagation();selectDino(img.dataset.dino);});
+    img.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectDino(img.dataset.dino);}});
+  });
   document.querySelectorAll('.activity-card').forEach(b=>b.addEventListener('click',()=>({egg:doEgg,feed:doFeed,learn:doLearn,dance:doDance}[b.dataset.activity])()));
   $('soundToggle').addEventListener('click',()=>{soundOn=!soundOn;$('soundToggle').textContent=soundOn?'🔊':'🔇';$('soundToggle').title=soundOn?'Sound on':'Sound off';if(soundOn)speak('Sound is on!');else bubble.textContent='Sound is off. Tap to turn it back on.';});
   $('modalClose').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});

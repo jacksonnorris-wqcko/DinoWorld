@@ -1,6 +1,8 @@
-Dino World v0.0.10 — changed files only
+Dino World v0.0.11 — changed files only
 
-Upload these six files to the ROOT of your existing GitHub repository, replacing files with the same names:
+This is a layout overhaul with a screen-filling play area, a compact dinosaur selector, and a bottom activity hotbar.
+
+Upload these six files to the ROOT of your existing GitHub repository, replacing the files with the same names:
 - index.html
 - styles.css
 - app.js
@@ -8,13 +10,5 @@ Upload these six files to the ROOT of your existing GitHub repository, replacing
 - sw.js
 - version.json
 
-Do not upload the ZIP itself. Extract it first and upload the six files listed above.
-Wait for GitHub Pages to deploy, then close and reopen Dino World. Confirm the footer shows v0.0.10.
-
-Changes:
-- Replaced the main scene with a clean scenic meadow background and separate transparent dinosaur characters.
-- Refined character cutouts and card scaling.
-- Rebalanced scene dinosaur sizes and spacing.
-- Standardized activity tile image sizing.
-- Added extra top padding for iPhone Home Screen/standalone mode.
-- Updated app and service-worker versions for automatic update detection.
+Extract the ZIP first; do not upload the ZIP itself. Keep index.html and all app files at the repository root.
+Wait for GitHub Pages to deploy, then close/reopen Dino World and confirm the footer/version label says v0.0.11.

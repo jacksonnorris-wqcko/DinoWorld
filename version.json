@@ -1,10 +1,10 @@
 {
-  "version": "0.0.10",
-  "release": "Rebuilt meadow scene with separate transparent dinosaur characters; fixed card image framing and activity tile sizing; corrected iOS standalone top safe area.",
+  "version": "0.0.11",
+  "release": "Full-screen layout overhaul: large interactive meadow, compact 20% dinosaur selector and bottom four-button activity dock",
   "released": "2026-10-13",
   "assets": [
-    "meadow background",
-    "transparent Rex, Stan and Jarvis characters",
-    "existing custom activity icons"
+    "scenic meadow background",
+    "transparent Rex, Stan and Jarvis character art",
+    "existing activity icons"
   ]
 }
