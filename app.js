@@ -1,12 +1,13 @@
 (() => {
   'use strict';
-  const APP_VERSION = '0.0.8';
+  const APP_VERSION = '0.0.9';
   const $ = id => document.getElementById(id);
   // Essential artwork is embedded in artwork.js so the game still works if a host omits the assets folder.
   function applyArtwork(){ const art=window.DINO_ART||{}; document.querySelectorAll('[data-art]').forEach(el=>{const key=el.getAttribute('data-art'); if(art[key]) el.src=art[key];}); }
   applyArtwork();
+  // v0.0.9 uses the custom hero artwork as the single scene. The old canvas meadow is retired.
   const canvas = $('worldCanvas');
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas ? canvas.getContext('2d') : null;
   const bubble = $('speechBubble');
   const modal = $('modalBackdrop');
   const modalArt = $('modalArt');
@@ -29,6 +30,7 @@
     jarvis: {name:'Jarvis', full:'Brachiosaurus', color:'#65c5ed', dark:'#369bc9', light:'#a8e5fa', accent:'#ffe49b', emoji:'🦕', greeting:'Hello up there! I’m Jarvis the Brachiosaurus!', fact:'Brachiosaurus had a very long neck and front legs longer than its back legs. It ate plants.', sound:260}
   };
   function resizeCanvas(){
+    if(!canvas || !ctx) return;
     const rect = canvas.getBoundingClientRect();
     deviceScale = Math.min(window.devicePixelRatio || 1, 2);
     canvasW = Math.max(1, rect.width); canvasH = Math.max(1, rect.height);
@@ -151,7 +153,7 @@
   $('sceneLabel').addEventListener('click',()=>selectDino(selected));
   $('sceneLabel').parentElement.parentElement.addEventListener('click',e=>{if(e.target.closest('.scene-label')||e.target.closest('.speech-bubble'))return;const rect=e.currentTarget.getBoundingClientRect();const rel=(e.clientX-rect.left)/rect.width;if(rel<.34)selectDino('rex');else if(rel<.68)selectDino('stan');else selectDino('jarvis');});
   $('versionLabel').textContent='v'+APP_VERSION;
-  window.addEventListener('resize',resizeCanvas,{passive:true});resizeCanvas();requestAnimationFrame(animate);
+  if(canvas){window.addEventListener('resize',resizeCanvas,{passive:true});resizeCanvas();requestAnimationFrame(animate);}
 
   // PWA install and automatic update support. The app checks on open and every 60 seconds.
   const toast=$('updateToast');let reloading=false;

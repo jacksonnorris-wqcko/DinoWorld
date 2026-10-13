@@ -1,10 +1,10 @@
 {
-  "version": "0.0.8",
-  "release": "Rebuilt scene layout with no overlays on dinosaurs, clean image crops and balanced responsive cards",
+  "version": "0.0.9",
+  "release": "Removed legacy canvas meadow that duplicated the custom hero artwork; single-scene layout fix",
   "released": "2026-10-13",
   "assets": [
-    "clean hero artwork",
-    "individually framed character portraits",
-    "activity icons"
+    "existing hero artwork",
+    "existing individual dinosaur portraits",
+    "existing activity icons"
   ]
 }

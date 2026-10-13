@@ -23,3 +23,9 @@ button{font:inherit;touch-action:manipulation}
 @media(max-width:390px){.app-shell{padding-left:12px;padding-right:12px;gap:10px}.scene-card{padding:8px;border-radius:22px;gap:7px}.scene-toolbar{gap:6px}.scene-label{padding:8px;font-size:10px}.speech-bubble{padding:7px 8px;font-size:10px}.scene-visual{aspect-ratio:1.95;border-radius:14px}.dino-picker{gap:7px}.dino-choice{padding:7px 4px 8px;border-radius:17px}.dino-portrait{height:68px}.activity-section{padding:12px;border-radius:22px}.activity-grid{gap:8px}.activity-card{grid-template-columns:44px minmax(0,1fr);gap:8px;min-height:78px;padding:8px;border-radius:16px}.activity-art{width:44px;height:44px;border-radius:12px}.activity-name{font-size:12px}.activity-hint{font-size:10px}.footer{gap:6px}}
 @media(min-width:520px){.app-shell{gap:16px;padding-top:20px}.scene-visual{aspect-ratio:2.12}.dino-portrait{height:92px}.dino-choice{padding:12px 8px}.activity-card{grid-template-columns:62px minmax(0,1fr);min-height:100px;padding:13px}.activity-art{width:62px;height:62px}}
 @media(max-height:740px){.app-shell{gap:9px}.scene-visual{aspect-ratio:2.25}.dino-portrait{height:56px}.dino-choice{padding:5px}.activity-section{padding:10px}.activity-card{min-height:68px;padding:8px}.activity-art{width:42px;height:42px}}
+
+/* v0.0.9: the old canvas meadow duplicated the hero artwork and is no longer part of the scene. */
+#worldCanvas { display: none !important; }
+.scene-card { position: relative; }
+.scene-visual { flex: 0 0 auto; }
+.scene-artwork { object-fit: cover; object-position: center 48%; }
