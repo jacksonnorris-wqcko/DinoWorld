@@ -1,4 +1,4 @@
-Dino World v0.0.17 — single-dinosaur playground
+Dino World v0.0.18 — focused layout fix
 
 Replace these five files in the ROOT of your existing GitHub repository:
 - index.html
@@ -7,14 +7,11 @@ Replace these five files in the ROOT of your existing GitHub repository:
 - sw.js
 - version.json
 
-Leave artwork.js and all other files unchanged. This version reuses the existing embedded meadow and separate Rex/Stan/Jarvis character art already present in artwork.js.
+Leave artwork.js and all other files unchanged.
 
-Changes:
-- Main scene now layers the scenic meadow background and one selected dinosaur.
-- Selecting Rex, Stan or Jarvis changes the main character immediately.
-- Each dinosaur is scaled individually so Jarvis's long neck fits without shrinking Rex and Stan.
-- Tapping the main dinosaur repeats its greeting and triggers a small bounce.
-- Character selector, Let's Play activity cards, and their layout remain unchanged.
-- Cache/version updated to 0.0.17.
+Fix:
+- Jarvis is scaled down slightly and shifted left so his head does not sit behind the greeting bubble.
+- Rex and Stan sizing is unchanged.
+- Version/cache updated to v0.0.18.
 
-Extract the ZIP. Upload the five files to the repository root, commit, wait for GitHub Pages to deploy, then close/reopen Dino World and confirm v0.0.17.
+After committing, wait for GitHub Pages to deploy, then close and reopen the app and confirm the footer says v0.0.18.

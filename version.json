@@ -1,6 +1,6 @@
 {
-  "version": "0.0.17",
-  "release": "Single-dinosaur playground: selecting Rex, Stan or Jarvis updates the main scene to that dinosaur; tapping the hero repeats its greeting.",
+  "version": "0.0.18",
+  "release": "Adjusted Jarvis's size and horizontal position so his head stays clear of the greeting bubble on iPhone screens. Rex and Stan sizing remains unchanged.",
   "released": "2026-10-14",
   "assets": [
     "existing meadow background",

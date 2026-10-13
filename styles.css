@@ -199,3 +199,17 @@ button{font:inherit;touch-action:manipulation;cursor:pointer}
   .scene-main-dino[data-dino="stan"]{height:64%}
   .scene-main-dino[data-dino="jarvis"]{height:86%}
 }
+
+/* v0.0.18 — keep Jarvis's head clear of the greeting bubble on narrow iPhone screens. */
+.scene-main-dino[data-dino="jarvis"]{
+  height:78%;
+  max-width:58%;
+  left:39%;
+}
+@media(max-height:740px){
+  .scene-main-dino[data-dino="jarvis"]{
+    height:74%;
+    max-width:56%;
+    left:39%;
+  }
+}
