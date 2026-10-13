@@ -1,7 +1,7 @@
 /* Dino World auto-update service worker.
    For each release, update CACHE_VERSION in this file AND version.json.
    Keep app assets local so the shell remains available offline. */
-const CACHE_VERSION = 'dino-world-v0.0.1';
+const CACHE_VERSION = 'dino-world-v0.0.2';
 const APP_PREFIX = 'dino-world-';
 const APP_SHELL = ['./', './index.html', './styles.css', './app.js', './manifest.json', './version.json', './icon.svg'];
 

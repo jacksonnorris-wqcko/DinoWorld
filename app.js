@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const APP_VERSION = '0.0.1';
+  const APP_VERSION = '0.0.2';
   const $ = id => document.getElementById(id);
   const canvas = $('worldCanvas');
   const ctx = canvas.getContext('2d');
@@ -22,8 +22,8 @@
   let canvasW = 600, canvasH = 300;
   const dinoData = {
     rex: {name:'Rex', full:'Tyrannosaurus rex', color:'#55c97c', dark:'#29995b', light:'#a2efae', accent:'#f7d66e', emoji:'🦖', greeting:'Hi! I’m Rex. Roar-some to meet you!', fact:'Rex was a meat-eating dinosaur with a very big head and strong legs.', sound:180},
-    trixie: {name:'Trixie', full:'Triceratops', color:'#ffa76e', dark:'#e9794e', light:'#ffd0a2', accent:'#fff1be', emoji:'🦕', greeting:'Hello! I’m Trixie. Want to play?', fact:'Triceratops had three horns and a big bony frill around its head.', sound:230},
-    benny: {name:'Benny', full:'Brachiosaurus', color:'#65c5ed', dark:'#369bc9', light:'#a8e5fa', accent:'#ffe49b', emoji:'🦕', greeting:'Hello up there! I’m Benny!', fact:'Brachiosaurus had a long neck to help it reach tall plants.', sound:260}
+    stan: {name:'Stan', full:'Stegosaurus', color:'#ffa76e', dark:'#e9794e', light:'#ffd0a2', accent:'#fff1be', emoji:'🦕', greeting:'Hi! I’m Stan the Stegosaurus. Look at my plates!', fact:'Stegosaurus had big plates along its back and spikes on its tail. It ate plants.', sound:230},
+    jarvis: {name:'Jarvis', full:'Brachiosaurus', color:'#65c5ed', dark:'#369bc9', light:'#a8e5fa', accent:'#ffe49b', emoji:'🦕', greeting:'Hello up there! I’m Jarvis the Brachiosaurus!', fact:'Brachiosaurus had a very long neck and front legs longer than its back legs. It ate plants.', sound:260}
   };
   function resizeCanvas(){
     const rect = canvas.getBoundingClientRect();
@@ -64,21 +64,24 @@
       ellipse(6,-22,19,21,'#c4f0a6');
       // tiny arms
       path([[12,-34],[20,-29],[16,-22],[10,-27]],d.light,d.dark,1.5);
-    } else if(kind==='trixie'){
-      // tail and body
-      path([[-31,-30],[-53,-42],[-43,-22],[-27,-18]],gradient(-40,-31,19,d.light,d.dark),d.dark,2);
+    } else if(kind==='stan'){
+      // Stegosaurus: small head, arched back, distinctive plates and spiked tail
+      path([[-28,-29],[-58,-42],[-53,-29],[-35,-19]],gradient(-42,-31,20,d.light,d.dark),d.dark,2);
+      // tail spikes
+      path([[-55,-39],[-62,-48],[-59,-36]],d.accent,d.dark,1.2);
+      path([[-48,-34],[-55,-43],[-52,-30]],d.accent,d.dark,1.2);
       ellipse(-2,-28,36,27,gradient(0,-35,42,d.light,d.color));
       roundedRect(-27,-9,19,18,7,d.dark);roundedRect(9,-9,19,18,7,d.dark);ellipse(-18,8,14,5,d.dark);ellipse(19,8,14,5,d.dark);
-      // frill
-      ctx.beginPath();ctx.ellipse(19,-57,30,28,-.1,0,Math.PI*2);ctx.fillStyle=gradient(18,-63,36,d.light,d.color);ctx.fill();ctx.strokeStyle=d.dark;ctx.lineWidth=2.5;ctx.stroke();
-      // frill dots
-      ellipse(5,-75,3,3,d.accent);ellipse(29,-78,3,3,d.accent);ellipse(42,-58,3,3,d.accent);ellipse(6,-49,3,3,d.accent);
-      // horns
-      path([[0,-71],[-7,-89],[7,-75]],'#fff1cf',d.dark,1.8);path([[24,-76],[31,-91],[34,-73]],'#fff1cf',d.dark,1.8);
-      // face muzzle
-      ellipse(31,-52,21,16,gradient(28,-58,25,'#ffd2a0',d.color));ellipse(38,-53,3,3,d.dark);
-      ellipse(25,-62,7,8,'#fff');ellipse(27,-61,3.5,4.5,'#24483b');ellipse(28,-63,1.3,1.5,'#fff');
-      ctx.strokeStyle='#9c4d36';ctx.lineWidth=2;ctx.beginPath();ctx.arc(37,-45,7,.1,1.4);ctx.stroke();
+      // alternating plates along the arched back
+      path([[-31,-43],[-35,-59],[-24,-51]],d.accent,d.dark,1.6);
+      path([[-20,-49],[-21,-68],[-10,-54]],d.accent,d.dark,1.6);
+      path([[-7,-53],[-4,-72],[5,-54]],d.accent,d.dark,1.6);
+      path([[7,-53],[15,-69],[20,-49]],d.accent,d.dark,1.6);
+      path([[21,-47],[31,-60],[33,-42]],d.accent,d.dark,1.6);
+      // small head and friendly face
+      ctx.beginPath();ctx.ellipse(30,-45,18,14,-.15,0,Math.PI*2);ctx.fillStyle=gradient(28,-51,23,d.light,d.color);ctx.fill();ctx.strokeStyle=d.dark;ctx.lineWidth=2;ctx.stroke();
+      ellipse(34,-49,6.5,7,'#fff');ellipse(36,-48,3.2,4,'#24483b');ellipse(37,-50,1.2,1.3,'#fff');
+      ctx.strokeStyle=d.dark;ctx.lineWidth=2;ctx.beginPath();ctx.arc(41,-39,5,.1,1.5);ctx.stroke();
     } else {
       // tail and body
       path([[-28,-26],[-52,-38],[-44,-19],[-25,-17]],gradient(-40,-29,18,d.light,d.dark),d.dark,2);
@@ -93,7 +96,7 @@
       ellipse(1,-19,19,17,'#b7e9f8');
     }
     // blush and sparkle
-    if(kind!=='benny') ellipse(36,-48,5,3,'#ff9b9b');
+    if(kind!=='jarvis') ellipse(36,-48,5,3,'#ff9b9b');
     if(mode==='dance'){ctx.save();ctx.rotate(Math.sin(phase*6)*.2);ctx.fillStyle='#fff2a6';ctx.font='bold 18px system-ui';ctx.fillText('♪',-53,-68);ctx.fillText('✦',45,-95);ctx.restore();}
     if(mode==='eat'){ctx.fillStyle='#fff2a6';ctx.font='bold 15px system-ui';ctx.fillText('♥',43,-92);}
     ctx.restore();
@@ -120,9 +123,9 @@
     // egg nest
     ellipse(w*.16,h*.86,24,8,'#b9854d');ellipse(w*.16,h*.84,20,7,'#d6a467');drawEgg(w*.16,h*.82,.72,activity==='egg');
     // three dinos with selected character prominent in front
-    const positions={rex:[w*.34,h*.77,.82],trixie:[w*.57,h*.77,.78],benny:[w*.76,h*.76,.72]};
-    const order=['rex','trixie','benny'].filter(k=>k!==selected).concat(selected);
-    for(const k of order){const p=positions[k];drawDino(k,p[0],p[1],p[2],k===selected?animationMode:'idle',animationTime+(k==='trixie'?1.4:k==='benny'?2.2:0));}
+    const positions={rex:[w*.34,h*.77,.82],stan:[w*.57,h*.77,.78],jarvis:[w*.76,h*.76,.72]};
+    const order=['rex','stan','jarvis'].filter(k=>k!==selected).concat(selected);
+    for(const k of order){const p=positions[k];drawDino(k,p[0],p[1],p[2],k===selected?animationMode:'idle',animationTime+(k==='stan'?1.4:k==='jarvis'?2.2:0));}
     // ground sparkle
     ctx.fillStyle='rgba(255,255,255,.9)';ctx.font='bold 14px system-ui';ctx.fillText('✦',w*.1,h*.7);ctx.fillText('✦',w*.9,h*.65);
   }
@@ -134,7 +137,7 @@
   function doEgg(){activity='egg';animationMode='egg';openModal({art:'🥚',title:'A little surprise!',text:'Tap the egg to help it hatch. Who could be inside?',action:'Hatch the egg!',onAction:()=>{modalArt.textContent='✨';modalTitle.textContent='Crack, crack, CRACK!';modalText.textContent='A tiny dinosaur is coming out!';modalAction.textContent='Meet the baby!';modalAction.onclick=()=>{const keys=Object.keys(dinoData);const born=keys[Math.floor(Math.random()*keys.length)];selectDino(born,false);modalArt.textContent=dinoData[born].emoji;modalTitle.textContent='Hello, baby '+dinoData[born].name+'!';modalText.textContent='You helped a dinosaur hatch. '+dinoData[born].greeting;modalAction.textContent='Hooray!';modalAction.onclick=closeModal;celebrate();};celebrate();}});}
   function doFeed(){activity='feed';animationMode='eat';openModal({art:'🥬',title:'Rumble, rumble!',text:'Our dinosaur is hungry. What should we try feeding it?',choices:[{label:'🥬 Leaf',onClick:()=>feedAnswer(true,'A crunchy leaf. Yum!')},{label:'🍓 Berry',onClick:()=>feedAnswer(true,'A juicy berry. Delicious!')},{label:'🪨 Rock',onClick:()=>feedAnswer(false,'That’s a rock! Let’s choose something yummy.')}],action:'Try a food',onAction:()=>{}});}
   function feedAnswer(good,msg){if(good){modalArt.textContent='😋';modalTitle.textContent='Yum, yum!';modalText.textContent=msg+' '+dinoData[selected].name+' is happy!';modalChoices.innerHTML='';modalAction.textContent='More play!';modalAction.onclick=closeModal;animationMode='eat';celebrate();}else{modalArt.textContent='🤔';modalTitle.textContent='Hmm…';modalText.textContent=msg;modalAction.textContent='Try again';modalAction.onclick=doFeed;}}
-  function doLearn(){activity='learn';const target=['rex','trixie','benny'][Math.floor(Math.random()*3)];const targetData=dinoData[target];openModal({art:'🌈',title:'Can you find '+targetData.name+'?',text:'Tap the right dinosaur! Look for '+targetData.full+'.',choices:Object.keys(dinoData).map(k=>({label:dinoData[k].emoji+' '+dinoData[k].name,onClick:()=>{if(k===target){selectDino(k,false);modalArt.textContent='⭐';modalTitle.textContent='You found '+targetData.name+'!';modalText.textContent=targetData.fact;modalChoices.innerHTML='';modalAction.textContent='Hooray!';modalAction.onclick=closeModal;celebrate();}else{modalArt.textContent='💚';modalTitle.textContent='Good trying!';modalText.textContent='Let’s have another look. Can you find '+targetData.name+'?';modalAction.textContent='Try again';modalAction.onclick=doLearn;}}})),action:'Choose a dinosaur',onAction:()=>{}});}
+  function doLearn(){activity='learn';const target=['rex','stan','jarvis'][Math.floor(Math.random()*3)];const targetData=dinoData[target];openModal({art:'🌈',title:'Can you find '+targetData.name+'?',text:'Tap the right dinosaur! Look for '+targetData.full+'.',choices:Object.keys(dinoData).map(k=>({label:dinoData[k].emoji+' '+dinoData[k].name,onClick:()=>{if(k===target){selectDino(k,false);modalArt.textContent='⭐';modalTitle.textContent='You found '+targetData.name+'!';modalText.textContent=targetData.fact;modalChoices.innerHTML='';modalAction.textContent='Hooray!';modalAction.onclick=closeModal;celebrate();}else{modalArt.textContent='💚';modalTitle.textContent='Good trying!';modalText.textContent='Let’s have another look. Can you find '+targetData.name+'?';modalAction.textContent='Try again';modalAction.onclick=doLearn;}}})),action:'Choose a dinosaur',onAction:()=>{}});}
   function doDance(){activity='dance';animationMode='dance';openModal({art:'🎵',title:'Dance time!',text:dinoData[selected].name+' is ready to wiggle. Can you dance too?',action:'Wiggle, wiggle!',onAction:()=>{animationMode='dance';modalArt.textContent='💃';modalTitle.textContent='Great dancing!';modalText.textContent='Wiggle, wiggle, ROAR! You are a dino dance star.';modalAction.textContent='Dance again';modalAction.onclick=doDance;celebrate();}});}
   function celebrate(){if(!soundOn)return;try{if(!audioContext)audioContext=new(window.AudioContext||window.webkitAudioContext)();if(audioContext.state==='suspended')audioContext.resume();[523,659,784].forEach((f,i)=>{const o=audioContext.createOscillator(),g=audioContext.createGain();o.frequency.value=f;o.type='sine';g.gain.setValueAtTime(.0001,audioContext.currentTime+i*.09);g.gain.exponentialRampToValueAtTime(.055,audioContext.currentTime+i*.09+.025);g.gain.exponentialRampToValueAtTime(.0001,audioContext.currentTime+i*.09+.18);o.connect(g);g.connect(audioContext.destination);o.start(audioContext.currentTime+i*.09);o.stop(audioContext.currentTime+i*.09+.2);});}catch(e){}}
   document.querySelectorAll('.dino-choice').forEach(b=>b.addEventListener('click',()=>selectDino(b.dataset.dino)));
@@ -142,7 +145,7 @@
   $('soundToggle').addEventListener('click',()=>{soundOn=!soundOn;$('soundToggle').textContent=soundOn?'🔊':'🔇';$('soundToggle').title=soundOn?'Sound on':'Sound off';if(soundOn)speak('Sound is on!');else bubble.textContent='Sound is off. Tap to turn it back on.';});
   $('modalClose').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
   $('parentButton').addEventListener('click',()=>openModal({art:'💚',title:'Grown-ups corner',text:'Dino World v'+APP_VERSION+' is an early family-testing prototype. It does not need an account and does not intentionally collect personal information. Please supervise little explorers while testing.',action:'Back to play'}));
-  canvas.addEventListener('click',e=>{const rect=canvas.getBoundingClientRect();const x=e.clientX-rect.left;const rel=x/rect.width;if(rel<.45)selectDino('rex');else if(rel<.68)selectDino('trixie');else selectDino('benny');});
+  canvas.addEventListener('click',e=>{const rect=canvas.getBoundingClientRect();const x=e.clientX-rect.left;const rel=x/rect.width;if(rel<.45)selectDino('rex');else if(rel<.68)selectDino('stan');else selectDino('jarvis');});
   $('versionLabel').textContent='v'+APP_VERSION;
   window.addEventListener('resize',resizeCanvas,{passive:true});resizeCanvas();requestAnimationFrame(animate);
 

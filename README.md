@@ -1,9 +1,10 @@
-# Dino World — v0.0.1 family-testing prototype
+# Dino World — v0.0.2 family-testing prototype
 
-A small, toddler-oriented dinosaur playground PWA prototype. This first build uses locally rendered, 3D-inspired cartoon artwork drawn with Canvas so the scene works without external image/model downloads. It is not yet a full 3D engine build.
+A small, toddler-oriented dinosaur playground PWA prototype. This release uses locally rendered, 3D-inspired cartoon artwork drawn with Canvas so the scene works without external image/model downloads. It is not yet a full 3D engine build.
 
 ## Included
-- Three selectable dinosaur characters: Rex, Trixie and Benny
+- Updated character cast: Rex (Tyrannosaurus rex), Stan (Stegosaurus) and Jarvis (Brachiosaurus)
+- Three selectable dinosaur characters: Rex, Stan and Jarvis
 - Tap-to-react dinosaur playground
 - Egg hatching interaction
 - Feeding activity
@@ -13,7 +14,13 @@ A small, toddler-oriented dinosaur playground PWA prototype. This first build us
 - Responsive iPhone-first layout
 - PWA manifest, app icon, service worker and offline shell cache
 - Automatic update check on open and every 60 seconds
-- Visible version label (v0.0.1)
+- Visible version label (v0.0.2)
+
+## Version 0.0.2 changes
+- Replaced Trixie with Stan the Stegosaurus, including back plates and a spiked tail in the canvas illustration.
+- Replaced Benny with Jarvis the Brachiosaurus.
+- Updated character cards, selection, greetings, facts, quiz choices and egg-hatching character pool.
+- Bumped the visible app version, remote version file and service-worker cache together to preserve automatic updates.
 
 ## Run locally
 For service-worker/PWA testing, serve this folder over localhost (not by opening `index.html` as a file). For example, with Python installed:
