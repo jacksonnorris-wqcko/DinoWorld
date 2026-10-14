@@ -1,10 +1,12 @@
 {
-  "version": "0.0.19",
-  "release": "Character scale and placement pass: Jarvis has regained tall-neck proportions on short iPhone screens; Rex and Stan have consistent ground alignment and preserved sizing.",
+  "version": "0.0.20",
+  "release": "Character artwork replacement: Rex, Stan and Jarvis now use full-body replacement assets with transparent safety margins; existing meadow, activities and app behaviour retained.",
   "released": "2026-10-14",
   "assets": [
+    "updated embedded Rex character artwork",
+    "updated embedded Stan character artwork",
+    "updated embedded Jarvis character artwork",
     "existing meadow background",
-    "existing separate transparent Rex, Stan and Jarvis artwork",
     "existing activity icons"
   ]
 }

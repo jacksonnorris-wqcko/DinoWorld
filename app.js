@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const APP_VERSION = '0.0.19';
+  const APP_VERSION = '0.0.20';
   const $ = id => document.getElementById(id);
   // Essential artwork is embedded in artwork.js so the game still works if a host omits the assets folder.
   function applyArtwork(){ const art=window.DINO_ART||{}; document.querySelectorAll('[data-art]').forEach(el=>{const key=el.getAttribute('data-art'); if(art[key]) { el.src=art[key]; el.classList.remove('art-missing'); } else { el.classList.add('art-missing'); } }); }
