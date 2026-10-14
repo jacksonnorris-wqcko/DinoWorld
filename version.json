@@ -1,11 +1,11 @@
 {
-  "version": "0.0.20",
-  "release": "Character artwork replacement: Rex, Stan and Jarvis now use full-body replacement assets with transparent safety margins; existing meadow, activities and app behaviour retained.",
+  "version": "0.0.21",
+  "release": "Hotfix: replace JPEG-flattened character images with repaired transparent PNG cut-outs for Rex, Stan and Jarvis; bump service-worker cache to force refresh.",
   "released": "2026-10-14",
   "assets": [
-    "updated embedded Rex character artwork",
-    "updated embedded Stan character artwork",
-    "updated embedded Jarvis character artwork",
+    "repaired transparent PNG Rex artwork",
+    "repaired transparent PNG Stan artwork",
+    "repaired transparent PNG Jarvis artwork",
     "existing meadow background",
     "existing activity icons"
   ]
