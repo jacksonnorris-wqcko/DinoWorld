@@ -1,5 +1,5 @@
 {
-  "version": "0.0.21",
+  "version": "0.0.22",
   "release": "Hotfix: replace JPEG-flattened character images with repaired transparent PNG cut-outs for Rex, Stan and Jarvis; bump service-worker cache to force refresh.",
   "released": "2026-10-14",
   "assets": [
