@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const APP_VERSION = '0.0.24';
+  const APP_VERSION = '0.1.0';
   const $ = id => document.getElementById(id);
   // Essential artwork is embedded in artwork.js so the game still works if a host omits the assets folder.
   function applyArtwork(){ const art=window.DINO_ART||{}; document.querySelectorAll('[data-art]').forEach(el=>{const key=el.getAttribute('data-art'); if(art[key]) { el.src=art[key]; el.classList.remove('art-missing'); } else { el.classList.add('art-missing'); } }); }
@@ -193,18 +193,20 @@
       hero.classList.remove('play-bounce');
       void hero.offsetWidth;
       hero.classList.add('play-bounce');
+      if(window.DinoRex3D) window.DinoRex3D.setVisible(kind==='rex');
+      if(kind==='rex' && window.DinoRex3D) window.DinoRex3D.setMode('happy');
     }
     animationMode='hello';
     drawWorld();
     if(announce) speak(dinoData[kind].greeting);
   }
   function openModal({art,title,text,choices=[],action="Let's go!",onAction=null}){modalArt.textContent=art;modalTitle.textContent=title;modalText.textContent=text;modalChoices.innerHTML='';modalAction.textContent=action;modalAction.onclick=()=>{if(onAction)onAction();else closeModal();};choices.forEach(c=>{const b=document.createElement('button');b.className='choice-button';b.textContent=c.label;b.onclick=()=>c.onClick();modalChoices.appendChild(b);});modal.classList.remove('hidden');}
-  function closeModal(){modal.classList.add('hidden');activity=null;animationMode='idle';drawWorld();}
-  function doEgg(){activity='egg';animationMode='egg';openModal({art:'🥚',title:'A little surprise!',text:'Tap the egg to help it hatch. Who could be inside?',action:'Hatch the egg!',onAction:()=>{modalArt.textContent='✨';modalTitle.textContent='Crack, crack, CRACK!';modalText.textContent='A tiny dinosaur is coming out!';modalAction.textContent='Meet the baby!';modalAction.onclick=()=>{const keys=Object.keys(dinoData);const born=keys[Math.floor(Math.random()*keys.length)];selectDino(born,false);modalArt.textContent=dinoData[born].emoji;modalTitle.textContent='Hello, baby '+dinoData[born].name+'!';modalText.textContent='You helped a dinosaur hatch. '+dinoData[born].greeting;modalAction.textContent='Hooray!';modalAction.onclick=closeModal;celebrate();};celebrate();}});}
-  function doFeed(){activity='feed';animationMode='eat';openModal({art:'🥬',title:'Rumble, rumble!',text:'Our dinosaur is hungry. What should we try feeding it?',choices:[{label:'🥬 Leaf',onClick:()=>feedAnswer(true,'A crunchy leaf. Yum!')},{label:'🍓 Berry',onClick:()=>feedAnswer(true,'A juicy berry. Delicious!')},{label:'🪨 Rock',onClick:()=>feedAnswer(false,'That’s a rock! Let’s choose something yummy.')}],action:'Try a food',onAction:()=>{}});}
+  function closeModal(){modal.classList.add('hidden');activity=null;animationMode='idle';if(selected==='rex'&&window.DinoRex3D)window.DinoRex3D.setMode('idle');drawWorld();}
+  function doEgg(){activity='egg';animationMode='egg';if(selected==='rex'&&window.DinoRex3D)window.DinoRex3D.setMode('look');openModal({art:'🥚',title:'A little surprise!',text:'Tap the egg to help it hatch. Who could be inside?',action:'Hatch the egg!',onAction:()=>{modalArt.textContent='✨';modalTitle.textContent='Crack, crack, CRACK!';modalText.textContent='A tiny dinosaur is coming out!';modalAction.textContent='Meet the baby!';modalAction.onclick=()=>{const keys=Object.keys(dinoData);const born=keys[Math.floor(Math.random()*keys.length)];selectDino(born,false);modalArt.textContent=dinoData[born].emoji;modalTitle.textContent='Hello, baby '+dinoData[born].name+'!';modalText.textContent='You helped a dinosaur hatch. '+dinoData[born].greeting;modalAction.textContent='Hooray!';modalAction.onclick=closeModal;celebrate();};celebrate();}});}
+  function doFeed(){activity='feed';animationMode='eat';if(selected==='rex'&&window.DinoRex3D)window.DinoRex3D.setMode('happy');openModal({art:'🥬',title:'Rumble, rumble!',text:'Our dinosaur is hungry. What should we try feeding it?',choices:[{label:'🥬 Leaf',onClick:()=>feedAnswer(true,'A crunchy leaf. Yum!')},{label:'🍓 Berry',onClick:()=>feedAnswer(true,'A juicy berry. Delicious!')},{label:'🪨 Rock',onClick:()=>feedAnswer(false,'That’s a rock! Let’s choose something yummy.')}],action:'Try a food',onAction:()=>{}});}
   function feedAnswer(good,msg){if(good){modalArt.textContent='😋';modalTitle.textContent='Yum, yum!';modalText.textContent=msg+' '+dinoData[selected].name+' is happy!';modalChoices.innerHTML='';modalAction.textContent='More play!';modalAction.onclick=closeModal;animationMode='eat';celebrate();}else{modalArt.textContent='🤔';modalTitle.textContent='Hmm…';modalText.textContent=msg;modalAction.textContent='Try again';modalAction.onclick=doFeed;}}
   function doLearn(){activity='learn';const target=['rex','stan','jarvis'][Math.floor(Math.random()*3)];const targetData=dinoData[target];openModal({art:'🌈',title:'Can you find '+targetData.name+'?',text:'Tap the right dinosaur! Look for '+targetData.full+'.',choices:Object.keys(dinoData).map(k=>({label:dinoData[k].emoji+' '+dinoData[k].name,onClick:()=>{if(k===target){selectDino(k,false);modalArt.textContent='⭐';modalTitle.textContent='You found '+targetData.name+'!';modalText.textContent=targetData.fact;modalChoices.innerHTML='';modalAction.textContent='Hooray!';modalAction.onclick=closeModal;celebrate();}else{modalArt.textContent='💚';modalTitle.textContent='Good trying!';modalText.textContent='Let’s have another look. Can you find '+targetData.name+'?';modalAction.textContent='Try again';modalAction.onclick=doLearn;}}})),action:'Choose a dinosaur',onAction:()=>{}});}
-  function doDance(){activity='dance';animationMode='dance';openModal({art:'🎵',title:'Dance time!',text:dinoData[selected].name+' is ready to wiggle. Can you dance too?',action:'Wiggle, wiggle!',onAction:()=>{animationMode='dance';modalArt.textContent='💃';modalTitle.textContent='Great dancing!';modalText.textContent='Wiggle, wiggle, ROAR! You are a dino dance star.';modalAction.textContent='Dance again';modalAction.onclick=doDance;celebrate();}});}
+  function doDance(){activity='dance';animationMode='dance';if(selected==='rex'&&window.DinoRex3D)window.DinoRex3D.setMode('dance');openModal({art:'🎵',title:'Dance time!',text:dinoData[selected].name+' is ready to wiggle. Can you dance too?',action:'Wiggle, wiggle!',onAction:()=>{animationMode='dance';modalArt.textContent='💃';modalTitle.textContent='Great dancing!';modalText.textContent='Wiggle, wiggle, ROAR! You are a dino dance star.';modalAction.textContent='Dance again';modalAction.onclick=doDance;celebrate();}});}
   function celebrate(){if(!soundOn)return;try{if(!audioContext)audioContext=new(window.AudioContext||window.webkitAudioContext)();if(audioContext.state==='suspended')audioContext.resume();[523,659,784].forEach((f,i)=>{const o=audioContext.createOscillator(),g=audioContext.createGain();o.frequency.value=f;o.type='sine';g.gain.setValueAtTime(.0001,audioContext.currentTime+i*.09);g.gain.exponentialRampToValueAtTime(.055,audioContext.currentTime+i*.09+.025);g.gain.exponentialRampToValueAtTime(.0001,audioContext.currentTime+i*.09+.18);o.connect(g);g.connect(audioContext.destination);o.start(audioContext.currentTime+i*.09);o.stop(audioContext.currentTime+i*.09+.2);});}catch(e){}}
   document.querySelectorAll('.dino-choice').forEach(b=>b.addEventListener('click',()=>selectDino(b.dataset.dino)));
   const mainDino=$('mainDino');
@@ -216,7 +218,7 @@
       speak(tapReactions[selected] || dinoData[selected].greeting);
       window.setTimeout(()=>mainDino.classList.remove('react-rex','react-stan','react-jarvis','play-bounce'),1000);
     };
-    mainDino.addEventListener('click',greetSelected);
+    mainDino.addEventListener('click',()=>{if(selected==='rex'&&window.DinoRex3D)window.DinoRex3D.setMode('happy');greetSelected();});
     mainDino.addEventListener('keydown',e=>{
       if(e.key==='Enter'||e.key===' '){e.preventDefault();greetSelected();}
     });
@@ -235,6 +237,7 @@
   $('sceneLabel').addEventListener('click',()=>selectDino(selected));
   $('sceneLabel').parentElement.parentElement.addEventListener('click',e=>{if(e.target.closest('.scene-label')||e.target.closest('.speech-bubble'))return;const rect=e.currentTarget.getBoundingClientRect();const rel=(e.clientX-rect.left)/rect.width;if(rel<.34)selectDino('rex');else if(rel<.68)selectDino('stan');else selectDino('jarvis');});
   $('versionLabel').textContent='v'+APP_VERSION;
+  window.addEventListener('dino-rex3d-ready',()=>{if(window.DinoRex3D)window.DinoRex3D.setVisible(selected==='rex');});
   if(canvas){window.addEventListener('resize',resizeCanvas,{passive:true});resizeCanvas();requestAnimationFrame(animate);}
 
   // PWA install and automatic update support. The app checks on open and every 60 seconds.

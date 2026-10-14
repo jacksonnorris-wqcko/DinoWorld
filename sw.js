@@ -1,7 +1,7 @@
-/* Dino World v0.0.24 updater */
-const CACHE_VERSION = 'dino-world-v0.0.24';
+/* Dino World v0.1.0 updater */
+const CACHE_VERSION = 'dino-world-v0.1.0';
 const APP_PREFIX = 'dino-world-';
-const APP_SHELL = ['./', './index.html', './styles.css', './app.js', './artwork.js', './manifest.json', './version.json', './icon.svg', './apple-touch-icon.png'];
+const APP_SHELL = ['./', './index.html', './styles.css', './app.js', './artwork.js', './rex3d.js', './manifest.json', './version.json', './icon.svg', './apple-touch-icon.png'];
 self.addEventListener('install', event => { event.waitUntil((async()=>{ const cache=await caches.open(CACHE_VERSION); await cache.addAll(APP_SHELL); await self.skipWaiting(); })()); });
 self.addEventListener('activate', event => { event.waitUntil((async()=>{ const keys=await caches.keys(); await Promise.all(keys.filter(k=>k.startsWith(APP_PREFIX)&&k!==CACHE_VERSION).map(k=>caches.delete(k))); await self.clients.claim(); })()); });
 self.addEventListener('message', event => { if(event.data&&event.data.type==='SKIP_WAITING') self.skipWaiting(); });

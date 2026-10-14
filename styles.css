@@ -243,3 +243,9 @@ button{font:inherit;touch-action:manipulation;cursor:pointer}
 /* The speech bubble must remain above the character without covering its face. */
 .speech-bubble{z-index:5}
 .scene-main-dino{z-index:2}
+
+/* v0.1.0 — 3D Rex lives inside the existing hero slot; the rest of the game stays unchanged. */
+.rex3d-canvas { position:absolute; z-index:3; pointer-events:auto; display:block; overflow:visible; touch-action:manipulation; }
+.scene-main-dino.rex3d-hidden { opacity:0 !important; pointer-events:none !important; }
+.scene-visual.rex3d-ready .rex3d-canvas { cursor:pointer; }
+@media(prefers-reduced-motion:reduce){ .rex3d-canvas { animation:none !important; } }

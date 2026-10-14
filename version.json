@@ -1,12 +1,13 @@
 {
-  "version": "0.0.24",
-  "release": "Character motion update: continuous idle bob and sway, repeatable character-specific tap reactions, reduced-motion support.",
+  "version": "0.1.0",
+  "release": "First 3D Rex integration prototype inside the existing Dino World main gameplay scene. Original app layout, dino picker, activity cards, modal flows and artwork for Stan/Jarvis retained.",
   "released": "2026-10-14",
-  "assets": [
-    "Existing Rex, Stan and Jarvis artwork retained",
-    "Continuous idle bob and gentle sway on the main dinosaur",
-    "Character-specific tap reactions that run alongside idle motion",
-    "Reduced-motion accessibility support",
-    "Saved sound on/off preference"
+  "notes": [
+    "Added a procedural 3D Rex with articulated jaw, eyelids, segmented tail, arms and legs.",
+    "Integrated 3D canvas into the existing main dinosaur slot only; original UI and activities remain.",
+    "Stan and Jarvis continue to use the original artwork.",
+    "PNG Rex automatically remains visible if WebGL/module initialization fails.",
+    "Three.js is loaded from jsDelivr CDN; internet is required for 3D Rex, while the existing game has an image fallback.",
+    "This is an integration test build; physical iPhone and full browser QA still required."
   ]
 }
