@@ -1,23 +1,39 @@
 (() => {
   'use strict';
-  const APP_VERSION = '0.0.23';
+  const APP_VERSION = '0.0.24';
   const $ = id => document.getElementById(id);
   // Essential artwork is embedded in artwork.js so the game still works if a host omits the assets folder.
   function applyArtwork(){ const art=window.DINO_ART||{}; document.querySelectorAll('[data-art]').forEach(el=>{const key=el.getAttribute('data-art'); if(art[key]) { el.src=art[key]; el.classList.remove('art-missing'); } else { el.classList.add('art-missing'); } }); }
   applyArtwork();
-  // v0.0.23 character reactions: CSS is injected after the page styles so it takes effect.
+  // v0.0.24 motion pass: continuous idle motion plus clear, repeatable tap reactions.
+  // Use the independent CSS translate/rotate properties for idle motion so the
+  // transform used by tap reactions does not cancel it out.
   const reactionStyle = document.createElement('style');
   reactionStyle.textContent = `
-    #mainDino { transform-origin: 50% 90%; will-change: transform; }
-    #mainDino.play-bounce { animation: dino23-bounce .62s cubic-bezier(.2,.8,.3,1); }
-    #mainDino.react-rex { animation: dino23-rex .72s ease-in-out; }
-    #mainDino.react-stan { animation: dino23-stan .72s ease-in-out; }
-    #mainDino.react-jarvis { animation: dino23-jarvis .9s ease-in-out; }
-    @keyframes dino23-bounce { 0%,100% { transform: translateY(0) scale(1); } 38% { transform: translateY(-13px) scale(1.025); } 65% { transform: translateY(0) scale(.99,1.02); } }
-    @keyframes dino23-rex { 0%,100% { transform: translateY(0) rotate(0) scale(1); } 35% { transform: translateY(-15px) rotate(-2deg) scale(1.035); } 65% { transform: translateY(0) rotate(2deg) scale(.99,1.02); } }
-    @keyframes dino23-stan { 0%,100% { transform: rotate(0) translateY(0); } 30% { transform: rotate(-4deg) translateY(-3px); } 65% { transform: rotate(4deg) translateY(-2px); } }
-    @keyframes dino23-jarvis { 0%,100% { transform: rotate(0) translateY(0); } 30% { transform: rotate(-3deg) translateY(-4px); } 65% { transform: rotate(3deg) translateY(-2px); } }
-    @media (prefers-reduced-motion: reduce) { #mainDino.play-bounce, #mainDino.react-rex, #mainDino.react-stan, #mainDino.react-jarvis { animation-duration: .01ms; } }
+    #mainDino {
+      transform-origin: 50% 90%;
+      transform-box: fill-box;
+      will-change: transform, translate, rotate;
+      animation: dino24-idle-bob 3.1s ease-in-out infinite,
+                 dino24-idle-sway 5.8s ease-in-out infinite;
+      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
+    }
+    #mainDino.play-bounce { animation: dino24-idle-bob 3.1s ease-in-out infinite, dino24-idle-sway 5.8s ease-in-out infinite, dino24-bounce .68s cubic-bezier(.2,.8,.3,1); }
+    #mainDino.react-rex { animation: dino24-idle-bob 3.1s ease-in-out infinite, dino24-idle-sway 5.8s ease-in-out infinite, dino24-rex .78s ease-in-out; }
+    #mainDino.react-stan { animation: dino24-idle-bob 3.1s ease-in-out infinite, dino24-idle-sway 5.8s ease-in-out infinite, dino24-stan .82s ease-in-out; }
+    #mainDino.react-jarvis { animation: dino24-idle-bob 3.1s ease-in-out infinite, dino24-idle-sway 5.8s ease-in-out infinite, dino24-jarvis .9s ease-in-out; }
+    @keyframes dino24-idle-bob { 0%,100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+    @keyframes dino24-idle-sway { 0%,100% { rotate: 0deg; } 50% { rotate: .65deg; } }
+    @keyframes dino24-bounce { 0%,100% { transform: scale(1); } 35% { transform: translateY(-15px) scale(1.035); } 62% { transform: translateY(0) scale(.99,1.02); } }
+    @keyframes dino24-rex { 0%,100% { transform: scale(1); } 34% { transform: translateY(-17px) rotate(-2deg) scale(1.035); } 67% { transform: translateY(0) rotate(1deg) scale(.99,1.02); } }
+    @keyframes dino24-stan { 0%,100% { transform: rotate(0) translateY(0); } 28% { transform: rotate(-4deg) translateY(-3px); } 62% { transform: rotate(4deg) translateY(-2px); } }
+    @keyframes dino24-jarvis { 0%,100% { transform: rotate(0) translateY(0); } 30% { transform: rotate(-2.5deg) translateY(-5px); } 65% { transform: rotate(2.5deg) translateY(-2px); } }
+    @media (prefers-reduced-motion: reduce) {
+      #mainDino { animation: none !important; translate: none !important; rotate: none !important; }
+      #mainDino.play-bounce, #mainDino.react-rex, #mainDino.react-stan, #mainDino.react-jarvis { animation: dino24-reduced-reaction .18s ease-out; }
+      @keyframes dino24-reduced-reaction { from { opacity: .8; } to { opacity: 1; } }
+    }
   `;
   document.head.appendChild(reactionStyle);
 
@@ -196,9 +212,9 @@
     const greetSelected=()=>{
       mainDino.classList.remove('play-bounce','react-rex','react-stan','react-jarvis');
       void mainDino.offsetWidth;
-      mainDino.classList.add('play-bounce','react-'+selected);
+      mainDino.classList.add('react-'+selected);
       speak(tapReactions[selected] || dinoData[selected].greeting);
-      window.setTimeout(()=>mainDino.classList.remove('react-rex','react-stan','react-jarvis'),950);
+      window.setTimeout(()=>mainDino.classList.remove('react-rex','react-stan','react-jarvis','play-bounce'),1000);
     };
     mainDino.addEventListener('click',greetSelected);
     mainDino.addEventListener('keydown',e=>{

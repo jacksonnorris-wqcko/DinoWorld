@@ -1,10 +1,12 @@
 {
-  "version": "0.0.23",
-  "release": "Character interaction update: character-specific tap reactions, bounce/head-tilt animation and saved sound preference.",
+  "version": "0.0.24",
+  "release": "Character motion update: continuous idle bob and sway, repeatable character-specific tap reactions, reduced-motion support.",
   "released": "2026-10-14",
   "assets": [
-    "Existing Rex, Stan and Jarvis transparent artwork retained",
-    "Character-specific tap reaction animations",
+    "Existing Rex, Stan and Jarvis artwork retained",
+    "Continuous idle bob and gentle sway on the main dinosaur",
+    "Character-specific tap reactions that run alongside idle motion",
+    "Reduced-motion accessibility support",
     "Saved sound on/off preference"
   ]
 }
