@@ -1,12 +1,10 @@
 {
-  "version": "0.0.22",
-  "release": "Hotfix: replace JPEG-flattened character images with repaired transparent PNG cut-outs for Rex, Stan and Jarvis; bump service-worker cache to force refresh.",
+  "version": "0.0.23",
+  "release": "Character interaction update: unique tap reactions, improved bounce/head-tilt animations, and saved sound preference.",
   "released": "2026-10-14",
   "assets": [
-    "repaired transparent PNG Rex artwork",
-    "repaired transparent PNG Stan artwork",
-    "repaired transparent PNG Jarvis artwork",
-    "existing meadow background",
-    "existing activity icons"
+    "Existing Rex, Stan and Jarvis transparent artwork retained",
+    "Character-specific tap reaction animations",
+    "Saved sound on/off preference"
   ]
 }

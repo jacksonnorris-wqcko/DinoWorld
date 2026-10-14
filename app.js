@@ -1,10 +1,26 @@
 (() => {
   'use strict';
-  const APP_VERSION = '0.0.22';
+  const APP_VERSION = '0.0.23';
   const $ = id => document.getElementById(id);
   // Essential artwork is embedded in artwork.js so the game still works if a host omits the assets folder.
   function applyArtwork(){ const art=window.DINO_ART||{}; document.querySelectorAll('[data-art]').forEach(el=>{const key=el.getAttribute('data-art'); if(art[key]) { el.src=art[key]; el.classList.remove('art-missing'); } else { el.classList.add('art-missing'); } }); }
   applyArtwork();
+  // v0.0.23: lightweight character reactions that do not alter the artwork itself.
+  const reactionStyle = document.createElement('style');
+  reactionStyle.textContent = `
+    #mainDino { transform-origin: 50% 90%; }
+    #mainDino.play-bounce { animation: dino23-bounce .62s cubic-bezier(.2,.8,.3,1); }
+    #mainDino.react-rex { animation: dino23-rex .72s ease-in-out; }
+    #mainDino.react-stan { animation: dino23-stan .72s ease-in-out; }
+    #mainDino.react-jarvis { animation: dino23-jarvis .9s ease-in-out; }
+    @keyframes dino23-bounce { 0%,100% { transform: translateY(0) scale(1); } 38% { transform: translateY(-13px) scale(1.025); } 65% { transform: translateY(0) scale(.99,1.02); } }
+    @keyframes dino23-rex { 0%,100% { transform: translateY(0) rotate(0) scale(1); } 35% { transform: translateY(-15px) rotate(-2deg) scale(1.035); } 65% { transform: translateY(0) rotate(2deg) scale(.99,1.02); } }
+    @keyframes dino23-stan { 0%,100% { transform: rotate(0) translateY(0); } 30% { transform: rotate(-4deg) translateY(-3px); } 65% { transform: rotate(4deg) translateY(-2px); } }
+    @keyframes dino23-jarvis { 0%,100% { transform: rotate(0) translateY(0); } 30% { transform: rotate(-3deg) translateY(-4px); } 65% { transform: rotate(3deg) translateY(-2px); } }
+    @media (prefers-reduced-motion: reduce) { #mainDino.play-bounce, #mainDino.react-rex, #mainDino.react-stan, #mainDino.react-jarvis { animation-duration: .01ms; } }
+  `;
+  document.head.appendChild(reactionStyle);
+
   // v0.0.11 uses the image-based meadow scene; the legacy canvas has been removed.
   const canvas = null;
   const ctx = null;
@@ -17,6 +33,13 @@
   const modalAction = $('modalAction');
   let selected = 'rex';
   let soundOn = true;
+  try { soundOn = localStorage.getItem('dinoWorldSoundOn') !== 'false'; } catch (e) {}
+  function saveSoundPreference(){ try { localStorage.setItem('dinoWorldSoundOn', String(soundOn)); } catch (e) {} }
+  const tapReactions = {
+    rex: 'Roar! Did you see my big jump?',
+    stan: 'Hehe! My three horns are ready for an adventure!',
+    jarvis: 'Woooah, what can you see from up here?'
+  };
   let activity = null;
   let animationTime = 0;
   let animationMode = 'idle';
@@ -172,9 +195,12 @@
   if(mainDino){
     const greetSelected=()=>{
       mainDino.classList.remove('play-bounce');
+      mainDino.classList.remove('react-rex','react-stan','react-jarvis');
       void mainDino.offsetWidth;
-      mainDino.classList.add('play-bounce');
-      speak(dinoData[selected].greeting);
+      mainDino.classList.add('play-bounce','react-'+selected);
+      animationMode = 'hello';
+      speak(tapReactions[selected] || dinoData[selected].greeting);
+      window.setTimeout(()=>mainDino.classList.remove('react-rex','react-stan','react-jarvis'),900);
     };
     mainDino.addEventListener('click',greetSelected);
     mainDino.addEventListener('keydown',e=>{
@@ -186,7 +212,11 @@
     img.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectDino(img.dataset.dino);}});
   });
   document.querySelectorAll('.activity-card').forEach(b=>b.addEventListener('click',()=>({egg:doEgg,feed:doFeed,learn:doLearn,dance:doDance}[b.dataset.activity])()));
-  $('soundToggle').addEventListener('click',()=>{soundOn=!soundOn;$('soundToggle').textContent=soundOn?'🔊':'🔇';$('soundToggle').title=soundOn?'Sound on':'Sound off';if(soundOn)speak('Sound is on!');else bubble.textContent='Sound is off. Tap to turn it back on.';});
+  $('soundToggle').addEventListener('click',()=>{soundOn=!soundOn;saveSoundPreference();$('soundToggle').textContent=soundOn?'🔊':'🔇';$('soundToggle').title=soundOn?'Sound on':'Sound off';$('soundToggle').setAttribute('aria-label',soundOn?'Turn sound off':'Turn sound on');if(soundOn)speak('Sound is on!');else bubble.textContent='Sound is off. Tap to turn it back on.';});
+  // Restore the saved sound preference in the button on every launch.
+  $('soundToggle').textContent=soundOn?'🔊':'🔇';
+  $('soundToggle').title=soundOn?'Sound on':'Sound off';
+  $('soundToggle').setAttribute('aria-label',soundOn?'Turn sound off':'Turn sound on');
   $('modalClose').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
   $('parentButton').addEventListener('click',()=>openModal({art:'💚',title:'Grown-ups corner',text:'Dino World v'+APP_VERSION+' is an early family-testing prototype. It does not need an account and does not intentionally collect personal information. Please supervise little explorers while testing.',action:'Back to play'}));
   $('sceneLabel').addEventListener('click',()=>selectDino(selected));
