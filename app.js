@@ -5,10 +5,10 @@
   // Essential artwork is embedded in artwork.js so the game still works if a host omits the assets folder.
   function applyArtwork(){ const art=window.DINO_ART||{}; document.querySelectorAll('[data-art]').forEach(el=>{const key=el.getAttribute('data-art'); if(art[key]) { el.src=art[key]; el.classList.remove('art-missing'); } else { el.classList.add('art-missing'); } }); }
   applyArtwork();
-  // v0.0.23: lightweight character reactions that do not alter the artwork itself.
+  // v0.0.23 character reactions: CSS is injected after the page styles so it takes effect.
   const reactionStyle = document.createElement('style');
   reactionStyle.textContent = `
-    #mainDino { transform-origin: 50% 90%; }
+    #mainDino { transform-origin: 50% 90%; will-change: transform; }
     #mainDino.play-bounce { animation: dino23-bounce .62s cubic-bezier(.2,.8,.3,1); }
     #mainDino.react-rex { animation: dino23-rex .72s ease-in-out; }
     #mainDino.react-stan { animation: dino23-stan .72s ease-in-out; }
@@ -194,13 +194,11 @@
   const mainDino=$('mainDino');
   if(mainDino){
     const greetSelected=()=>{
-      mainDino.classList.remove('play-bounce');
-      mainDino.classList.remove('react-rex','react-stan','react-jarvis');
+      mainDino.classList.remove('play-bounce','react-rex','react-stan','react-jarvis');
       void mainDino.offsetWidth;
       mainDino.classList.add('play-bounce','react-'+selected);
-      animationMode = 'hello';
       speak(tapReactions[selected] || dinoData[selected].greeting);
-      window.setTimeout(()=>mainDino.classList.remove('react-rex','react-stan','react-jarvis'),900);
+      window.setTimeout(()=>mainDino.classList.remove('react-rex','react-stan','react-jarvis'),950);
     };
     mainDino.addEventListener('click',greetSelected);
     mainDino.addEventListener('keydown',e=>{
@@ -213,7 +211,6 @@
   });
   document.querySelectorAll('.activity-card').forEach(b=>b.addEventListener('click',()=>({egg:doEgg,feed:doFeed,learn:doLearn,dance:doDance}[b.dataset.activity])()));
   $('soundToggle').addEventListener('click',()=>{soundOn=!soundOn;saveSoundPreference();$('soundToggle').textContent=soundOn?'🔊':'🔇';$('soundToggle').title=soundOn?'Sound on':'Sound off';$('soundToggle').setAttribute('aria-label',soundOn?'Turn sound off':'Turn sound on');if(soundOn)speak('Sound is on!');else bubble.textContent='Sound is off. Tap to turn it back on.';});
-  // Restore the saved sound preference in the button on every launch.
   $('soundToggle').textContent=soundOn?'🔊':'🔇';
   $('soundToggle').title=soundOn?'Sound on':'Sound off';
   $('soundToggle').setAttribute('aria-label',soundOn?'Turn sound off':'Turn sound on');
